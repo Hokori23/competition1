@@ -1,5 +1,5 @@
 <template>
-	<section id="friend">
+	<section id="friend" :class='{"loading":this.$store.state.loading.value}' class='view'>
 		<h1>Friend Page</h1>
 	</section>
 </template>

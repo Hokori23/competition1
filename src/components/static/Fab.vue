@@ -9,11 +9,13 @@
 		name: 'fab',
 		methods: {
 			newPost() {
-				this.$router.push('new-post')
+				if (this.$router.currentRoute.path !== 'home/new-post') {
+					this.$router.push('home/new-post')
+				}
 			}
 		},
-		computed:{
-			display:function(){
+		computed: {
+			display: function() {
 				return this.$store.getters.fabDisplay;
 			}
 		}

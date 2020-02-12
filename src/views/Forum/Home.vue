@@ -1,5 +1,5 @@
 <template>
-	<section id="home">
+	<section id="home" :class='{"loading":this.$store.state.loading.value}' class='view'>
 		<router-view></router-view>
 	</section>
 </template>
@@ -9,3 +9,6 @@
 		name: 'Home',
 	}
 </script>
+
+<style scoped>
+</style>

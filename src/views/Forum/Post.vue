@@ -37,27 +37,11 @@
 				post: null
 			}
 		},
-		methods: {
-			getPost: function() {
-				let that = this;
-				this.$store.commit('load',true)
-				this.$axios({
-					methods: 'get',
-					url: '/public/post.json',
-				}).then(function(res) {
-					that.$store.commit('load',false)
-					that.post = res.data
-				}).catch(function(err) {
-					that.$store.commit('load',false)
-					mdui.snackbar({
-						message: '请求失败',
-						timeout: '2000'
-					})
-				})
-			}
-		},
 		mounted() {
-			this.getPost()
+			this.$store.dispatch('getPost',this)
+		},
+		updated(){
+			this.$store.dispatch('getPost',this)
 		}
 	}
 </script>

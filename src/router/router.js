@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-/********************************/
+/********************************///Forum Module
 import Home from '@/views/Forum/Home.vue'
-
 
 const Post = resolve => {
 	require.ensure(['@/views/Forum/Post.vue'], () => {
@@ -16,11 +15,20 @@ const detailPost = resolve => {
 	}) //按需加载
 }
 const newPost = resolve => {
-	require.ensure(['@/views/thirdViews/newPost.vue'], () => {
-		resolve(require('@/views/thirdViews/newPost.vue'))
+	require.ensure(['@/views/Forum/newPost.vue'], () => {
+		resolve(require('@/views/Forum/newPost.vue'))
 	}) //按需加载
 }
 /********************************/
+
+
+
+/********************************///Start Module
+import Start from '@/views/Start/Start.vue'
+
+import Login from '@/views/Start/Login.vue'
+/********************************/
+
 
 import Friend from '@/views/Friend/Friend.vue'
 
@@ -28,25 +36,14 @@ import Message from '@/views/Message/Message.vue'
 
 import DrawerPage from '@/views/secondViews/DrawerPage.vue'
 
-import Start from '@/views/Start/Start.vue'
-import Login from '@/views/Start/Login.vue'
 let base = `${process.env.BASE_URL}`; // 动态获取二级目录
 const router = new VueRouter({
 	mode: 'history',
 	base: base,
 	routes: [{
-			path: '/',
-			name: 'Start',
-			component: Start,
-			children:[{
-				path:'',
-				name:'Login',
-				component:Login
-			}]
-		}, {
 			path: '/home',
-			name: 'Home',
 			component: Home,
+			name:'Home',
 			children: [{
 				path: '',
 				name: 'Post',
@@ -70,6 +67,14 @@ const router = new VueRouter({
 			path: '/message',
 			name: 'Message',
 			component: Message
+		}, {
+			path: '/',
+			component: Start,
+			children: [{
+				path: '',
+				name: 'Login',
+				component: Login
+			}]
 		},
 		{
 			path: '/drawer-page',

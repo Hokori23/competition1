@@ -7,13 +7,15 @@
 			<!-- Title -->
 			<a class="mdui-typo-title">{{this.$store.state.location.text}}</a>
 			<div class="mdui-toolbar-spacer"></div>
-			<!-- 			<a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a> -->
-			<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar' v-if ='notHomePage'>
+
+			<!-- searchBar -->
+			<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar' v-if='this.$store.getters.searchBarDisplay'>
 				<button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
 				<input class="mdui-textfield-input mdui-color-theme" type="text" placeholder="Search" />
 				<button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
 			</div>
-			<a class="mdui-btn mdui-btn-icon" style='margin: 0px;'><i class="mdui-icon material-icons">refresh</i></a>
+			<!-- refresh -->
+			<a class="mdui-btn mdui-btn-icon" style='margin: 0px;' @click='refresh()'><i class="mdui-icon material-icons">refresh</i></a>
 			<a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
 		</div>
 	</header>
@@ -27,9 +29,6 @@
 			firstPage() {
 				return this.$store.getters.firstPage;
 			},
-			notHomePage(){
-				return !this.$store.getters.homePage;
-			}
 		},
 		methods: {
 			click() {
@@ -40,6 +39,14 @@
 					this.$router.go(-1)
 				}
 			},
+			refresh() {
+				if (this.$router.currentRoute.name === 'Post') {
+					this.$store.dispatch('getPost', this)
+				}
+			}
+		},
+		mounted() {
+			mdui.mutation()
 		}
 	}
 </script>

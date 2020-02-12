@@ -8,28 +8,30 @@
 </template>
 <script>
 	//components
+	import mdui from 'mdui'
 	import Loading from '@/components/static/Loading.vue'
-	
+
 	//modules
+	
 	export default {
 		name: 'App',
-		computed:{
-			loading(){
+		components: {
+			Loading
+		},
+		computed: {
+			loading() {
 				return this.$store.state.loading.value
 			}
 		},
-		watch: {
-			$route: {
-				handler: function() {
-					this.$store.commit('titleChange', this.$router.currentRoute.name);
-				},
-				deep: true
-			}
-		}
 	}
 </script>
-<style>
-	#app {}
+<style scoped>
+	#app{
+		padding-bottom: 56px;
+	}
+	#container{
+		position: relative;
+	}
 
 	#container,
 	#app {
@@ -40,5 +42,12 @@
 
 	#container>div {
 		width: 100%;
+	}
+	.view{
+		transition: transform ease .3s;
+	}
+	.loading{
+		/* padding-top: 60px; */
+		transform: translate3D(0,100px,0)
 	}
 </style>

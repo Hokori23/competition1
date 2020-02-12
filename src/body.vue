@@ -3,14 +3,14 @@
 		<noscript>
 			<strong>仅允许支持JavaScript的浏览器访问，抱歉！</strong>
 		</noscript>
-		<div v-if='this.$store.state.login.value'>
+		<div v-if='this.$store.state.start.login'>
 			<Drawer></Drawer>
 			<Appbar></Appbar>
 			<App></App>
 			<BottomNav :navItem="navItem"></BottomNav>
 			<FAB></FAB>
 		</div>
-		<router-view v-if='!this.$store.state.login.value'></router-view>
+		<router-view v-if='!this.$store.state.start.login'></router-view>
 	</body>
 </template>
 
@@ -34,7 +34,7 @@
 			Drawer,
 			App,
 			BottomNav,
-			FAB
+			FAB,
 		},
 		data: function() {
 			return {
@@ -54,6 +54,17 @@
 				}],
 			}
 		},
+		watch: {
+			$route: {
+				handler: function() {
+					this.$store.commit('titleChange', this.$router.currentRoute.name);
+					if (!this.$store.state.start.login) {
+						this.$router.push('/').catch(data => {})
+					}
+				},
+				deep: true
+			},
+		},
 		mounted: function() {
 			//init router path
 			{
@@ -61,6 +72,14 @@
 					i.path = router.options.routes[index].path;
 					i.text = router.options.routes[index].name;
 				})
+			}
+			if (!this.$store.state.start.login && this.$router.currentRoute.path !== '/') {
+				this.$router.push('/').catch(data => {})
+			}
+		},
+		updated() {
+			if (!this.$store.state.start.login && this.$router.currentRoute.path !== '/') {
+				this.$router.push('/').catch(data => {})
 			}
 		}
 	}
@@ -78,19 +97,21 @@
 		-webkit-user-drag: none;
 	}
 
-	html,body {
+	html,
+	body {
 		height: 100%;
 	}
 
 	body::-webkit-scrollbar {
 		display: none;
 	}
-	body{
+
+	body {
 		box-sizing: border-box;
 	}
 
 	.mdui-snackbar-bottom {
 		bottom: 56px !important;
-		z-index: -1 !important;
+		z-index: 998 !important;
 	}
 </style>

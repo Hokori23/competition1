@@ -5,6 +5,8 @@ import mdui from 'mdui'
 import store from '@/state/store.js'
 import './registerServiceWorker'
 import axios from 'axios'
+require('promise.prototype.finally').shim();
+
 //views
 import Body from '@/body.vue'
 

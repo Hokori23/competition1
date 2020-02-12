@@ -1,6 +1,6 @@
 <template>
 	<!--设置:class="{'mdui-color-theme':dark}"-->
-	<nav class="mdui-bottom-nav mdui-bottom-nav-scroll-hide mdui-color-theme">
+	<nav class="mdui-bottom-nav mdui-color-theme">
 		<router-link v-for="(page,index) of navItem" class="mdui-ripple" :class="{'mdui-bottom-nav-active':index===0}" :to='page.path'
 		 :key='index'>
 			<i class="mdui-icon material-icons">{{page.icon}}</i>
@@ -18,5 +18,8 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	nav{
+		z-index: 999;
+	}
 </style>
