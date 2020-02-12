@@ -11,6 +11,9 @@ const store = new Vuex.Store({
 		},
 		loading: {
 			value: false
+		},
+		login:{
+			value:false
 		}
 	},
 	getters: {

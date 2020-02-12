@@ -68,11 +68,6 @@
 		height: 36px;
 	}
 
-	/* 	.mdui-toolbar {
-		height: auto !important;
-		line-height: unset !important;
-	} */
-
 	.mdui-typo-title {
 		overflow: visible !important;
 		text-overflow: unset !important;

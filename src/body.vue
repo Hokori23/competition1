@@ -3,11 +3,13 @@
 		<noscript>
 			<strong>仅允许支持JavaScript的浏览器访问，抱歉！</strong>
 		</noscript>
-		<Drawer></Drawer>
-		<Appbar></Appbar>
-		<App></App>
-		<BottomNav :navItem="navItem"></BottomNav>
-		<FAB></FAB>
+		<div v-if='this.$store.state.login.value'>
+			<Drawer></Drawer>
+			<Appbar></Appbar>
+			<App></App>
+			<BottomNav :navItem="navItem"></BottomNav>
+			<FAB></FAB>
+		</div>
 	</body>
 </template>
 
@@ -82,8 +84,9 @@
 	body::-webkit-scrollbar {
 		display: none;
 	}
-	.mdui-snackbar-bottom{
-		bottom:56px !important;
+
+	.mdui-snackbar-bottom {
+		bottom: 56px !important;
 		z-index: -1 !important;
 	}
 </style>

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 /********************************/
 import Home from '@/views/Home.vue'
 
+Vue.use(VueRouter)
+
 const Post = resolve => {
 	require.ensure(['@/views/secondViews/Post.vue'], () => {
 		resolve(require('@/views/secondViews/Post.vue'))
@@ -24,7 +26,8 @@ import Friend from '@/views/Friend.vue'
 
 
 import Message from '@/views/Message.vue'
-Vue.use(VueRouter)
+
+import DrawerPage from '@/views/secondViews/DrawerPage.vue'
 
 let base = `${process.env.BASE_URL}`; // 动态获取二级目录
 const router = new VueRouter({
@@ -57,6 +60,11 @@ const router = new VueRouter({
 			path: '/message',
 			name: 'Message',
 			component: Message
+		},
+		{
+			path:'/drawer-page',
+			name:'DrawerPage',
+			component:DrawerPage
 		}
 	]
 })

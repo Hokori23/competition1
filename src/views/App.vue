@@ -11,7 +11,7 @@
 	import Home from '@/views/Home.vue'
 	import Friend from '@/views/Friend.vue'
 	import Message from '@/views/Message.vue'
-
+	import DrawerPage from'@/views/secondViews/DrawerPage.vue'
 	//components
 	import Loading from '@/components/static/Loading.vue'
 	
@@ -22,6 +22,7 @@
 			Home,
 			Friend,
 			Message,
+			DrawerPage,
 			Loading
 		},
 		computed:{
