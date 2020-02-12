@@ -10,6 +10,7 @@
 			<BottomNav :navItem="navItem"></BottomNav>
 			<FAB></FAB>
 		</div>
+		<router-view v-if='!this.$store.state.login.value'></router-view>
 	</body>
 </template>
 
@@ -77,12 +78,15 @@
 		-webkit-user-drag: none;
 	}
 
-	html {
+	html,body {
 		height: 100%;
 	}
 
 	body::-webkit-scrollbar {
 		display: none;
+	}
+	body{
+		box-sizing: border-box;
 	}
 
 	.mdui-snackbar-bottom {

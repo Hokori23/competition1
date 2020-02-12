@@ -29,12 +29,23 @@ import Message from '@/views/Message.vue'
 
 import DrawerPage from '@/views/secondViews/DrawerPage.vue'
 
+import Start from '@/views/Start.vue'
+import Login from '@/views/secondViews/Login.vue'
 let base = `${process.env.BASE_URL}`; // 动态获取二级目录
 const router = new VueRouter({
 	mode: 'history',
 	base: base,
 	routes: [{
 			path: '/',
+			name: 'Start',
+			component: Start,
+			children:[{
+				path:'',
+				name:'Login',
+				component:Login
+			}]
+		}, {
+			path: '/home',
 			name: 'Home',
 			component: Home,
 			children: [{
@@ -45,10 +56,10 @@ const router = new VueRouter({
 				path: 'detail-post',
 				name: 'detailPost',
 				component: detailPost
-			},{
-				path:'new-post',
-				name:'newPost',
-				component:newPost
+			}, {
+				path: 'new-post',
+				name: 'newPost',
+				component: newPost
 			}]
 		},
 		{
@@ -62,9 +73,9 @@ const router = new VueRouter({
 			component: Message
 		},
 		{
-			path:'/drawer-page',
-			name:'DrawerPage',
-			component:DrawerPage
+			path: '/drawer-page',
+			name: 'DrawerPage',
+			component: DrawerPage
 		}
 	]
 })
