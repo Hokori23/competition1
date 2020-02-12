@@ -1,0 +1,31 @@
+[{
+	"nickName": "Hokori",
+	"school": "华信软件学院",
+	"majority": "软件工程",
+	"grade": "2018",
+	"postID":"000000",
+	"postTitle":"testTitle",
+	"postContent":"测试测试测试测试测试测试",
+	"postTime":"20:50",
+	"replyTime":"20:56"
+}, {
+	"nickName": "Leslie",
+	"school": "华信软件学院",
+	"majority": "软件工程",
+	"grade": "2018",
+	"postID":"000000",
+	"postTitle":"testTitle",
+	"postContent":"测试测试测试测试测试测试",
+	"postTime":"2020/2/9",
+	"replyTime":"20:54"
+}, {
+	"nickName": "Shiina",
+	"school": "华信软件学院",
+	"majority": "软件工程",
+	"grade": "2018",
+	"postID":"000000",
+	"postTitle":"testTitle",
+	"postContent":"测试测试测试测试测试测试",
+	"postTime":"2020/2/4",
+	"replyTime":"2020/2/6"
+}]
