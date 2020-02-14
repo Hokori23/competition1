@@ -68,7 +68,7 @@
 				deep: true
 			}
 		},
-		updated(){
+		updated() {
 			mdui.mutation()
 		}
 	}

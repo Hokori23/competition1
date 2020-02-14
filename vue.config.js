@@ -16,13 +16,13 @@ module.exports = {
 					'^/api':''
 				}
 			},
-			// '/':{
-			// 	target: 'https://hokori.online/',
-			// 	changeOrigin: true,
-			// 	pathRewrite:{
-			// 		'^/':''
-			// 	}
-			// }
+			'/':{
+				target: 'https://hokori.online/',
+				changeOrigin: true,
+				pathRewrite:{
+					'^/':''
+				}
+			}
 		}, // string | Object 代理设置
 		allowedHosts: [
 			'hokori.online'

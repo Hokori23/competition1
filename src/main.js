@@ -17,8 +17,8 @@ import '@/assets/css/addition.css'
 Vue.config.productionTip = false
 
 //init axios
-axios.defaults.baseURL = '/api';
-// axios.defaults.baseURL = '/';
+// axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = '/';
 Vue.prototype.$axios = axios;
 
 new Vue({
