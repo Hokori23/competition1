@@ -1,5 +1,5 @@
 <template>
-	<div id='loading'>
+	<div id='loading' v-show='this.$store.state.loading'>
 		<div class="mdui-spinner"></div>
 	</div>
 </template>
@@ -13,8 +13,9 @@
 <style scoped>
 	#loading{
 		position: absolute;
-		margin-top: 30px;
+		margin-top: 5px;
 		display: flex;
 		justify-content: center;
+		z-index: 7000;
 	}
 </style>

@@ -1,100 +1,132 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import router from '@/router/router.js'
 import mdui from 'mdui'
+
+import statusCode from '@/state/statusCode'
 Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
-		setting: {
-			dark: 0
+		lang: 'en', //缓存在serviceWorker
+		login: false, //缓存在serviceWorker
+		loading: false,
+		title: null,
+		post: null, //缓存在serviceWorker
+		menuBtn: null, //MenuBtn的icon
+	},
+	getters: {},
+	mutations: {
+		title(state, title) {
+			state.title = title
 		},
-		location: { //当前title
-			text: '',
+		loading(state, value) {
+			state.loading = value
 		},
-		loading: {
-			value: false
+		login(state, value) {
+			state.login = value
 		},
-		start: {
-			// firstPage: true,
-			login: false //edit
+		menuBtn(state, value) {
+			state.menuBtn = value
 		}
 	},
-	getters: {
-		//FAB按钮显示
-		fabDisplay: (state) => {
-			if (state.location.text === 'Post' || state.location.text === 'Message') {
-				return true;
-			} else {
-				return false;
-			}
-		},
-		//判断导航栏页面
-		firstPage: (state) => {
-			if (state.location.text === 'Home' || state.location.text === 'Friend' || state.location.text === 'Message' ||
-				state.location.text === 'Post') {
-				return true
-			} else {
-				return false
-			}
-		},
-		//判断是否首页,改变左上角按钮
-		menuIconText: (state, getters) => {
-			if (getters.firstPage === true) {
-				return 'menu'
-			} else {
-				return 'arrow_back'
-			}
-		},
-		//搜索栏
-		searchBarDisplay: (state) => {
-			if (state.location.text === 'Friend' || state.location.text === 'Message') {
-				return true
-			} else {
-				return false
-			}
-		},
-
-	},
-	mutations: { //title更换
-		titleChange(state, text) {
-			state.location.text = text
-		},
-		//load状态
-		load(state, value) {
-			state.loading.value = value;
-		},
-		//登录状态
-		login(state, value) {
-			state.start.login = value;
-		},
-		//是否是Start Module第一页
-		// startFirstPage(state, value) {
-		// 	state.start.firstPage = value
-		// }
-	},
 	actions: {
+		//获取帖子数据
 		getPost({
 			commit
 		}, event) {
-			mdui.mutation()
-			if (!this.state.loading.value) {
-				commit('load', true)
+			let that = this;
+			if (!this.state.loading) {
+				commit('loading', true)
 				event.$axios({
 					methods: 'get',
 					url: '/public/post.json',
+					timeout: 3000,
 				}).then(function(res) {
-					event.post = res.data
-				}).catch(function(err) {
-					console.log(err.message)
+					//把post数据放到state里
+					//PS:看到时能不能缓存到ServiceWorker
+					that.state.post = res.data
 					mdui.snackbar({
-						message: '请求失败',
+						message: '刷新成功',
+						timeout: '300',
+					})
+				}).catch(function(err) {
+					let errText;
+					if (that.state.lang === 'zh') {
+						errText = statusCode(err.response.status);
+					} else if (that.state.lang === 'en') {
+						errText = err.response.text
+					}
+					mdui.snackbar({
+						message: errText,
 						timeout: '2000',
 					})
 				}).finally(() => {
-					commit('load', false)
+					commit('loading', false)
 				})
 			}
+		},
+		//登录
+		login({
+			commit
+		}, event) {
+			commit('loading', true)
+			event.$axios({
+				methods: 'post',
+				url: '/public/login.json',
+				timeout: 3000,
+				data: {
+					account: event.user.account,
+					password: event.user.password
+				},
+			}).then(function(res) {
+				if (res.data.value) {
+					//状态处理
+					commit('login', true)
+					//页面跳转
+					event.$router.replace('/')
+				} else {
+					//处理登录失败情况
+				}
+				commit('loading', false)
+			}).catch(function(err) {
+				let errText = statusCode(err.response.status);
+				mdui.snackbar({
+					message: errText,
+					timeout: '2000',
+					position: 'top'
+				})
+				commit('loading', false)
+			})
+		},
+		//注销
+		logout({
+			commit
+		}, event) {
+			commit('loading', true)
+			event.$axios({
+				methods: 'post',
+				url: '/public/login.json',
+				timeout: 3000,
+			}).then(function(res) {
+				if (res.data.value) {
+					//状态处理
+					commit('login', false)
+					//页面跳转
+					event.$router.replace('/login')
+				} else {
+					//处理注销失败情况
+				}
+				commit('loading', false)
+			}).catch(function(err) {
+				let errText = statusCode(err.response.status);
+				mdui.snackbar({
+					message: errText,
+					timeout: '2000',
+					position: 'top'
+				})
+				commit('loading', false)
+			})
 		}
 	}
-
 })
 export default store

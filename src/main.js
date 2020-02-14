@@ -1,7 +1,6 @@
 //modules
 import Vue from 'vue'
 import router from '@/router/router.js'
-import mdui from 'mdui'
 import store from '@/state/store.js'
 import './registerServiceWorker'
 import axios from 'axios'
@@ -19,6 +18,7 @@ Vue.config.productionTip = false
 
 //init axios
 axios.defaults.baseURL = '/api';
+// axios.defaults.baseURL = '/';
 Vue.prototype.$axios = axios;
 
 new Vue({

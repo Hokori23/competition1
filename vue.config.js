@@ -15,7 +15,14 @@ module.exports = {
 				pathRewrite:{
 					'^/api':''
 				}
-			}
+			},
+			// '/':{
+			// 	target: 'https://hokori.online/',
+			// 	changeOrigin: true,
+			// 	pathRewrite:{
+			// 		'^/':''
+			// 	}
+			// }
 		}, // string | Object 代理设置
 		allowedHosts: [
 			'hokori.online'
@@ -27,8 +34,8 @@ module.exports = {
 	pwa: {
 		name: "vue-cli",
 		description: "PWA test project",
-		themeColor: "#3F51B5",
-		msTileColor: "#3F51B5",
+		themeColor: "#673AB7",
+		msTileColor: "#673AB7",
 		appleMobileWebAppCapable: "yes",
 		appleMobileWebAppStatusBarStyle: "black-translucent",
 		workboxPluginMode: "InjectManifest",
@@ -44,7 +51,7 @@ module.exports = {
 		},
 		manifestOptions: {
 			start_url: 'index.html',
-			background_color: '#3F51B5'
+			background_color: '#673AB7'
 		}
 	},
 }

@@ -1,22 +1,23 @@
 <template>
-	<header id='appbar' class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide">
+	<header id='appbar' class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide" v-if="this.$store.state.login">
 		<div class="mdui-toolbar mdui-color-theme">
 			<!-- menuBtn -->
-			<a class="mdui-btn mdui-btn-icon" @click.stop='click()'><i class="mdui-icon material-icons">{{this.$store.getters.menuIconText}}</i></a>
+			<a class="mdui-btn mdui-btn-icon" @click='menuBtn()'><i class="mdui-icon material-icons">{{this.$store.state.menuBtn}}</i></a>
 
 			<!-- Title -->
-			<a class="mdui-typo-title">{{this.$store.state.location.text}}</a>
+			<a class="mdui-typo-subheading">{{this.$store.state.title}}</a>
 			<div class="mdui-toolbar-spacer"></div>
 
 			<!-- searchBar -->
-			<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar' v-if='this.$store.getters.searchBarDisplay'>
+			<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar' v-if="this.$router.currentRoute.name.en==='Friend'||this.$router.currentRoute.name.en==='Message'">
 				<button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
 				<input class="mdui-textfield-input mdui-color-theme" type="text" placeholder="Search" />
 				<button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
 			</div>
 			<!-- refresh -->
-			<a class="mdui-btn mdui-btn-icon" style='margin: 0px;' @click='refresh()'><i class="mdui-icon material-icons">refresh</i></a>
-			<a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+			<a class="mdui-btn mdui-btn-icon" @click='refresh()'><i class="mdui-icon material-icons" v-if="this.$router.currentRoute.meta.index===0">refresh</i></a>
+			<!-- menu -->
+			<!-- 			<a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a> -->
 		</div>
 	</header>
 </template>
@@ -25,35 +26,58 @@
 	import mdui from 'mdui'
 	export default {
 		name: 'Appbar',
-		computed: {
-			firstPage() {
-				return this.$store.getters.firstPage;
-			},
-		},
 		methods: {
-			click() {
-				if (this.firstPage) {
-					let inst = new mdui.Drawer('#drawer');
-					inst.toggle()
+			menuBtn() {
+				let location = this.$router.currentRoute.meta.index;
+				if (location !== 0) {
+					this.$router.go(-location)
 				} else {
-					this.$router.go(-1)
+					let drawer = new mdui.Drawer('#drawer');
+					drawer.toggle()
 				}
 			},
 			refresh() {
-				if (this.$router.currentRoute.name === 'Post') {
+				if (this.$router.currentRoute.name.en === 'Forum') {
 					this.$store.dispatch('getPost', this)
 				}
 			}
 		},
-		mounted() {
+		watch: {
+			$route: {
+				handler() {
+					//检查标题语言
+					{
+						if (this.$store.state.login === true) {
+							if (this.$store.state.lang === 'zh') {
+								this.$store.commit('title', this.$router.currentRoute.name.zh)
+							} else if (this.$store.state.lang === 'en') {
+								this.$store.commit('title', this.$router.currentRoute.name.en)
+							}
+						}
+					}
+					//修改MenuBtn的icon
+					{
+						let location = this.$router.currentRoute.name.en
+						if (location == 'Forum' || location == 'Friend' || location == 'Message') {
+							this.$store.commit('menuBtn', 'menu')
+						} else {
+							this.$store.commit('menuBtn', 'arrow_back')
+						}
+					}
+				},
+				deep: true
+			}
+		},
+		updated(){
 			mdui.mutation()
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	#searchBar {
-		margin-right: 0;
+		margin: 0;
+		margin-left: 5px;
 		padding: 0;
 		min-width: 48px;
 		max-width: 400px;
@@ -75,10 +99,10 @@
 		height: 36px;
 	}
 
-	.mdui-typo-title {
+	.mdui-typo-subheading {
 		overflow: visible !important;
 		text-overflow: unset !important;
 		white-space: unset !important;
-		margin-right: 0 !important;
+		margin: 0 !important;
 	}
 </style>

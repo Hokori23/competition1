@@ -1,36 +1,35 @@
 <template>
 	<div id="app">
 		<main id='container'>
-			<Loading v-show='$store.state.loading.value'></Loading>
+			<Loading></Loading>
 			<router-view></router-view>
 		</main>
 	</div>
 </template>
 <script>
+	//views
+	import Forum from '@/views/Forum/Forum.vue'
+
 	//components
-	import mdui from 'mdui'
 	import Loading from '@/components/static/Loading.vue'
 
 	//modules
-	
 	export default {
 		name: 'App',
 		components: {
-			Loading
-		},
-		computed: {
-			loading() {
-				return this.$store.state.loading.value
-			}
+			Loading,
+			Forum
 		},
 	}
 </script>
 <style scoped>
-	#app{
-		padding-bottom: 56px;
+	#app {
+		height: calc(100% + 56px);
 	}
-	#container{
+
+	#container {
 		position: relative;
+		height: 100%;
 	}
 
 	#container,
@@ -43,11 +42,13 @@
 	#container>div {
 		width: 100%;
 	}
-	.view{
+
+	.view {
 		transition: transform ease .3s;
+		padding-bottom: 56px;
 	}
-	.loading{
-		/* padding-top: 60px; */
-		transform: translate3D(0,100px,0)
+
+	.loading {
+		transform: translate3D(0, 40px, 0)
 	}
 </style>
