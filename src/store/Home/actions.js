@@ -12,7 +12,7 @@ var getPost = function({
       }).then(function(res) {
         event.$store.commit('Home/changePost', res.data);
         mdui.snackbar({
-          message: '刷新成功',
+          message: event.$t('post.refresh'),
           timeout: '300',
         })
       }).catch(function(err) {

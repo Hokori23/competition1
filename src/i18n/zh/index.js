@@ -5,11 +5,17 @@ export default {
   login:{
     account:'账号或邮箱',
     accountErr:'不能为空，填写账号或邮箱',
+    accountWrong:'账号或邮箱不存在',
     password:'密码',
     passwordErr:'密码不能为空',
+    passwordWrong:'密码错误',
     login:'登录',
     register:'新用户注册',
     forgot:'无法登录?'
+  },
+  user:{
+    timeOutErr:'获取用户信息失败',
+    try:'重试'
   },
   nav:{
     forum:'首页',
@@ -19,7 +25,8 @@ export default {
   },
   post:{
     replyTime:'回复时间',
-    postTime:'发布时间'
+    postTime:'发布时间',
+    refresh:'刷新成功'
   },
   newPost:{
     header:'发布帖子来表达你技能交换的请愿',

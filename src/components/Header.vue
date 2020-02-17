@@ -92,6 +92,6 @@
 
   .mdui-typo-subheading {
     overflow: visible !important;
-    margin-left: 0 !important;
+    margin: 0 !important;
   }
 </style>

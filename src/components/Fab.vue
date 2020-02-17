@@ -21,5 +21,6 @@
 <style scoped>
   .mdui-fab-wrapper {
     margin-bottom: 62px;
+    z-index: 35;
   }
 </style>

@@ -3,7 +3,7 @@
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item">
-        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" /></div>
+        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = '/statics/avatar-fill.png';$event.onerror=null;" /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>
     </ul>
@@ -42,10 +42,10 @@
 <script>
   export default {
     name: 'Drawer',
-    computed:{
-        user(){
-          return this.$store.state.User.user
-        }
+    computed: {
+      user() {
+        return this.$store.state.User.user
+      }
     }
   }
 </script>
@@ -66,16 +66,19 @@
     line-height: 50px;
     margin: 10px 0;
   }
-  #avatar{
+
+  #avatar {
     padding: 3% 0;
   }
-  #drawer>.mdui-divider{
+
+  #drawer>.mdui-divider {
     margin: 0 5% 5% 5%;
   }
 
-  #drawer--list>.mdui-divider{
+  #drawer--list>.mdui-divider {
     margin: 5%;
   }
+
   #drawer--list>li {
     padding: 0 16px 0 25px
   }

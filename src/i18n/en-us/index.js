@@ -5,11 +5,17 @@ export default {
   login:{
     account:'Account or Email',
     accountErr:'Account or Email required',
+    accountWrong:'Account or Email not existed',
     password:'Password',
     passwordErr:'Password required',
+    passwordWrong:'Password wrong',
     login:'Login',
     register:'Register',
     forgot:'Forgot?'
+  },
+  user:{
+    timeOutErr:"Failed to request user's info",
+    try:'Try Again'
   },
   nav:{
     forum:'Home',
@@ -20,6 +26,7 @@ export default {
   post:{
     replyTime:'ReplyTime',
     postTime:'PostTime',
+    refresh:'Refreshed successfully'
   },
   newPost:{
     header:'Post to express your request for exchanging skills',

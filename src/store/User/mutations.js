@@ -10,5 +10,5 @@ var changeUser = function(state,value){
 export {
   changeLogin,
   changeLoad,
-  changeUser
+  changeUser,
 }

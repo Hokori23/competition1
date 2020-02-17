@@ -34,7 +34,7 @@
           title: null,
           content: null,
         },
-        error:{
+        error: {
           titleErr: false,
           contentErr: false,
         }
@@ -58,6 +58,7 @@
       next(vm => {
         vm.$store.commit('changeTitle', vm.$t('nav.newPost'))
         vm.$store.commit('Display/fab', false)
+        vm.$store.commit('Home/changeLoad', false)
       })
     },
     beforeRouteLeave(to, from, next) {

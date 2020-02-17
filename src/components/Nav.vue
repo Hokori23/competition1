@@ -50,6 +50,6 @@
   }
 
   nav {
-    z-index: 999;
+    z-index: 50;
   }
 </style>

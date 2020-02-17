@@ -17,6 +17,6 @@
 		display: flex;
     left: 50%;
     transform: translateX(-50%);
-		z-index: 7000;
+		z-index: 51;
 	}
 </style>

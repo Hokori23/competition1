@@ -6,7 +6,9 @@
 
 <script>
   export default {
-    name: 'App'
+    name: 'App',
+    mounted(){
+    }
   }
 </script>
 <style>
@@ -35,30 +37,14 @@
 
   body,
   html,
-  #q-app {
+  #q-app, {
     height: 100%;
   }
 
   .mdui-snackbar-bottom {
     bottom: 56px !important;
-    z-index: 998 !important;
+    z-index: 40 !important;
   }
-
-  img {
-    position: relative !important;
-  }
-
-  img:after {
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    /*    background: url(assets/avatar.jpg);
-    background-size: 100% 100%; */
-  }
-
   /****************btn****************/
   .mdui-btn:hover {
     background-color: unset !important;

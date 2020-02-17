@@ -1,22 +1,28 @@
-# Quasar App (quasar2)
+# Quasar PWA Project
 
-A Quasar Framework app
 
-## Install the dependencies
+## Install the dependencies(NPM)
 ```bash
-yarn
+npm install
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev
+quasar dev -m pwa
 ```
 
 
 ### Build the app for production
 ```bash
-quasar build
+quasar build -m pwa
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+### Module
+> Home
+> > Post to show expectation for exchanging skills
+>
+> Friend
+> > Add friend and chat 
+>
+> Message
+> > Chat with friends or even a group

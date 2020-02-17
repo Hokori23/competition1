@@ -3,7 +3,7 @@
     <div class="mdui-card" v-for='item of post' @click="to(item.id,item.title)">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" />
+        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = '/statics/avatar-fill.png';$event.onerror=null;" />
         <div class="mdui-card-header-title">{{item.nickName}}</div>
         <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
         </div>
@@ -15,7 +15,7 @@
       </div>
 
       <!-- 卡片的内容 -->
-      <div class="mdui-card-content">{{item.postContent}}</div>
+      <div class="mdui-card-content post-content">{{item.postContent}}</div>
       <div class='mdui-card-content card-bottom mdui-text-color-theme'>
         <span class='card-time'>{{$t('post.replyTime')}}: {{item.replyTime}}
         </span>
@@ -41,13 +41,13 @@
       },
       getPost() {
         this.$store.dispatch('Home/getPost', this)
-      }
+      },
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
         //改变顶部title
         vm.$store.commit('changeTitle', vm.$t('nav.forum'))
-        
+
         //获取帖子数据
         if (vm.$store.state.User.login) {
           vm.$store.dispatch('Home/getPost', vm)
@@ -103,11 +103,11 @@
     padding: 0px 17px;
     margin-bottom: 5px;
     line-height: 24px;
-    max-height: 48px;
+    max-height: 72px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     text-overflow: ellipsis;
     box-sizing: border-box;
   }
@@ -120,5 +120,9 @@
 
   .card-bottom>span {
     align-self: center;
+  }
+
+  .post-content {
+    white-space: pre-line;
   }
 </style>

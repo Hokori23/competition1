@@ -8,14 +8,14 @@
           <i class="mdui-icon material-icons">account_circle</i>
           <label class="mdui-textfield-label">{{$t('login.account')}}</label>
           <input class="mdui-textfield-input" type="text" required v-model='user.account' />
-          <div class="mdui-textfield-error">{{$t('login.accountErr')}}</div>
+          <div class="mdui-textfield-error">{{error.accountErrText}}</div>
         </div>
         <!-- password -->
-        <div class="mdui-textfield mdui-textfield-floating-label mdui-textfield-has-bottom" :class="{'mdui-textfield-invalid-html5':error.passwordErr}">
+        <div class="mdui-textfield mdui-textfield-floating-label mdui-textfield-has-bottom password" :class="{'mdui-textfield-invalid-html5':error.passwordErr}">
           <i class="mdui-icon material-icons">lock</i>
           <label class="mdui-textfield-label">{{$t('login.password')}}</label>
           <input class="mdui-textfield-input" type="password" required v-model='user.password' />
-          <div class="mdui-textfield-error">{{$t('login.passwordErr')}}</div>
+          <div class="mdui-textfield-error">{{error.passwordErrText}}</div>
         </div>
         <div id='login--btn'>
           <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme" @click='login()'>{{$t('login.login')}}</button>
@@ -41,9 +41,11 @@
           account: null,
           password: null,
         },
-        error:{
+        error: {
           accountErr: false,
-          passwordErr: false
+          accountErrText: this.$t('login.accountErr'), //default
+          passwordErr: false,
+          passwordErrText: this.$t('login.passwordErr'), //default
         }
       }
     },
@@ -119,5 +121,10 @@
 
   #login--footer>button {
     margin: 10px 15px;
+  }
+
+  .password input{
+    font-size: 25px;
+    letter-spacing: 2px;
   }
 </style>
