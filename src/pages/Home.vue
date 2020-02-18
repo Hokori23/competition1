@@ -3,7 +3,7 @@
     <div class="mdui-card" v-for='item of post' @click="to(item.id,item.title)">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = '/statics/avatar-fill.png';$event.onerror=null;" />
+        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = '/statics/icons/avatar-fill.png';$event.onerror=null;" />
         <div class="mdui-card-header-title">{{item.nickName}}</div>
         <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
         </div>

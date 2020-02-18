@@ -3,7 +3,7 @@
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item">
-        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = '/statics/avatar-fill.png';$event.onerror=null;" /></div>
+        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = '/statics/icons/avatar-fill.png';$event.onerror=null;" /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>
     </ul>

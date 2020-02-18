@@ -15,6 +15,7 @@ module.exports = function(ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
       'app.css'
+      // '~mdui/dist/css/mdui.min.css'
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
@@ -27,13 +28,13 @@ module.exports = function(ctx) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      // 'roboto-font', // optional, you are not bound to it
+      // 'material-icons' // optional, you are not bound to it
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      iconSet: 'material-icons', // Quasar icon set
+      // iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
 
       // Possible values for "all":
@@ -63,7 +64,7 @@ module.exports = function(ctx) {
       gzip: false,
       analyze: false,
       // Options below are automatically set depending on the env, set them if you want to override
-      // preloadChunks: false,
+      preloadChunks: true,
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
@@ -72,6 +73,7 @@ module.exports = function(ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
+      // publicPath:'pwa',
       https: true,
       port: 8080,
       open: true, // opens browser window automatically
@@ -83,13 +85,6 @@ module.exports = function(ctx) {
             '^/api': ''
           }
         },
-        '/': {
-          target: 'https://hokori.online/',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/': ''
-          }
-        }
       },
     },
 
@@ -113,7 +108,7 @@ module.exports = function(ctx) {
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#027be3',
+        theme_color: '#009688',
         icons: [{
             'src': 'statics/icons/icon-128x128.png',
             'sizes': '128x128',
@@ -149,12 +144,8 @@ module.exports = function(ctx) {
           appleTouchIcon167: 'statics/icons/apple-icon-167x167.png',
           appleSafariPinnedTab: 'statics/icons/safari-pinned-tab.svg',
           msapplicationTileImage: 'statics/icons/ms-icon-144x144.png',
-          msapplicationTileColor: '#000000'
+          msapplicationTileColor: '#009688'
         },
-        display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#027be3'
       }
     },
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova

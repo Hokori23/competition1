@@ -8,13 +8,14 @@ var login = function({
     commit('changeUser', event.user)
     event.$axios({
       methods: 'post',
-      url: '/public/login.json',
+      url: 'public/login.json',
       data: {
         account: event.user.account,
         password: event.user.password,
       },
       timeout: 5000,
     }).then(function(res) {
+      console.log(res)
       if (res.data.code == 1) {
         //登陆成功
         event.$store.commit('User/changeLogin', true)
@@ -41,12 +42,11 @@ var getUser = function({
   commit,
   state
 }, event) {
-  console.log('获取用户信息')
   //开启提交状态
   commit('changeLoad', true);
   event.$axios({
     methods: 'get',
-    url: '/public/user.json',
+    url: 'public/user.json',
     data: {
       account: event.user.account,
       //多层验证增加安全性
@@ -54,6 +54,7 @@ var getUser = function({
     },
     timeout: 5000,
   }).then(function(res) {
+      console.log(res)
     event.$store.commit('User/changeUser', res.data.user)
   }).catch(function(err) {
     let banner = mdui.snackbar({
