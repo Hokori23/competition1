@@ -1,5 +1,5 @@
 <template>
-  <section id='register'>
+  <section id='login--register'>
     
   </section>
 </template>

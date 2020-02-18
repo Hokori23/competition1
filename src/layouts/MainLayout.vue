@@ -4,10 +4,14 @@
     <Loading></Loading>
 
     <section :class="{'loading':this.$store.state.Home.load}" id='page'>
-      <keep-alive>
-        <router-view v-if="$route.meta.keepAlive"></router-view>
-      </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <transition :name="transitionName">
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+      </transition>
+      <transition :name="transitionName">
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </transition>
     </section>
 
     <Nav></Nav>
@@ -36,17 +40,34 @@
         return this.$store.state.User.user
       }
     },
+    data() {
+      return {
+        transitionName: ''
+      }
+    },
     beforeRouteEnter(to, from, next) {
       next(vm => {
         //检查登陆状态
         if (!vm.$store.state.User.login) {
           vm.$router.replace('/login')
         } else {
-          //进行初始化数据
+          
+          //进行初始化用户数据
           vm.$store.dispatch('User/getUser', vm);
         }
       })
     },
+    watch: {
+      $route(to, from) {
+        if (to.meta.index > from.meta.index) {
+          this.transitionName = 'slide-left'
+        } else if(to.meta.index < from.meta.index){
+          this.transitionName = 'slide-right'
+        }else{
+          this.transitionName = ''
+        }
+      }
+    }
   }
 </script>
 <style scoped>

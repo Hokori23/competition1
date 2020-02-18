@@ -7,7 +7,7 @@ var getPost = function({
     commit('changeLoad', true);
     event.$axios({
       methods: 'get',
-      url: 'public/post.json',
+      url: '/public/post.json',
       timeout: 5000,
     }).then(function(res) {
       console.log(res)
@@ -35,7 +35,7 @@ var newPost = function({
     commit('changeLoad', true);
     event.$axios({
       methods: 'get',
-      url: 'public/post.json',
+      url: '/public/post.json',
       data: {
         title: event.title,
         content: event.content

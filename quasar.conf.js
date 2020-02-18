@@ -67,13 +67,16 @@ module.exports = function(ctx) {
       preloadChunks: true,
       // extractCSS: false,
 
+      //DIY
+      publicPath: 'pwa',
+      vueRouterBase: 'pwa',
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack(cfg) {}
+      extendWebpack(cfg) {},
+
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
-      // publicPath:'pwa',
       https: true,
       port: 8080,
       open: true, // opens browser window automatically
@@ -109,9 +112,14 @@ module.exports = function(ctx) {
         orientation: 'portrait',
         background_color: '#ffffff',
         theme_color: '#009688',
+        start_url: '/pwa/index.html',
         icons: [{
             'src': 'statics/icons/icon-128x128.png',
             'sizes': '128x128',
+            'type': 'image/png'
+          }, {
+            'src': 'statics/icons/ms-icon-144x144.png',
+            'sizes': '144x144',
             'type': 'image/png'
           },
           {

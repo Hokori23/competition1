@@ -9,13 +9,13 @@
       <div class="mdui-toolbar-spacer"></div>
 
       <!-- searchBar -->
-      <div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar'>
+      <div class="mdui-textfield mdui-textfield-expandable mdui-float-right" id='searchBar' v-show='this.$store.state.Display.searchBar'>
         <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
         <input class="mdui-textfield-input mdui-color-theme" type="text" placeholder="Search" />
         <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
       </div>
       <!-- refresh -->
-      <a class="mdui-btn mdui-btn-icon" @click='refresh'><i class="mdui-icon material-icons">refresh</i></a>
+      <a class="mdui-btn mdui-btn-icon" @click='refresh' v-show='this.$store.state.Display.refresh'><i class="mdui-icon material-icons">refresh</i></a>
     </div>
   </header>
 </template>

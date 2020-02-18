@@ -21,7 +21,8 @@ export default {
     forum:'Home',
     friend:'Friend',
     message:'Message',
-    newPost:'New Post'
+    newPost:'New Post',
+    settings:'Settings',
   },
   post:{
     replyTime:'ReplyTime',
@@ -42,5 +43,10 @@ export default {
     reply:'Latest Reply',
     settings:'Settings',
     about:'About'
+  },
+  settings:{
+    language:'Language',
+    theme:'Theme',
+    darkMode:'DarkMode'
   }
 }

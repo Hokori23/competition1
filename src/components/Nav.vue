@@ -1,5 +1,5 @@
 <template>
-  <nav id='nav' class="mdui-bottom-nav mdui-color-theme">
+  <nav id='nav' class="mdui-bottom-nav mdui-color-theme" v-show='$store.state.Display.nav'>
 
     <a class="mdui-ripple mdui-bottom-nav-active" @click='toHome'>
       <i class="mdui-icon material-icons">&#xe88a;</i>
@@ -36,6 +36,11 @@
         }
       }
     },
+    data(){
+      return{
+        display:''
+      }
+    }
   }
 </script>
 

@@ -3,7 +3,7 @@
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item">
-        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = '/statics/icons/avatar-fill.png';$event.onerror=null;" /></div>
+        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = './statics/icons/avatar-fill.png';$event.onerror=null;" /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>
     </ul>
@@ -12,26 +12,26 @@
     <!-- divider -->
     <ul class="mdui-list" id='drawer--list'>
 
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe7fd;</i>
         <div class="mdui-list-item-content">{{$t('drawer.user')}}</div>
       </li>
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe163;</i>
         <div class="mdui-list-item-content">{{$t('drawer.post')}}</div>
       </li>
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe85a;</i>
         <div class="mdui-list-item-content">{{$t('drawer.reply')}}</div>
       </li>
       <!-- divider -->
       <div class="mdui-divider"></div>
       <!-- divider -->
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click="setting">
         <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
         <div class="mdui-list-item-content">{{$t('drawer.settings')}}</div>
       </li>
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
         <i class="mdui-list-item-icon mdui-icon material-icons">error</i>
         <div class="mdui-list-item-content">{{$t('drawer.about')}}</div>
       </li>
@@ -45,6 +45,13 @@
     computed: {
       user() {
         return this.$store.state.User.user
+      }
+    },
+    methods: {
+      setting() {
+        if (this.$router.currentRoute.path !== '/settings') {
+          this.$router.push('/settings')
+        }
       }
     }
   }

@@ -3,7 +3,7 @@
     <div class="mdui-card" v-for='item of post' @click="to(item.id,item.title)">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = '/statics/icons/avatar-fill.png';$event.onerror=null;" />
+        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = './statics/icons/avatar-fill.png';$event.onerror=null;" />
         <div class="mdui-card-header-title">{{item.nickName}}</div>
         <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
         </div>
@@ -49,8 +49,10 @@
         vm.$store.commit('changeTitle', vm.$t('nav.forum'))
 
         //获取帖子数据
-        if (vm.$store.state.User.login) {
-          vm.$store.dispatch('Home/getPost', vm)
+        {
+          if (vm.$store.state.User.login) {
+            vm.$store.dispatch('Home/getPost', vm)
+          }
         }
 
         //更新本页滚动位置
@@ -60,6 +62,16 @@
           if (scrollTop && $content) {
             $content.scrollTop = scrollTop;
           }
+        }
+
+        //修改组件状态
+        {
+          vm.$store.commit('Display/fab', true)
+          vm.$store.commit('Display/searchBar', true)
+          vm.$store.commit('Display/refresh', true)
+          vm.$store.commit('Display/nav', true)
+          //关闭loading组件
+          // vm.$store.commit('Home/changeLoad', false)
         }
       })
     },

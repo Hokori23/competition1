@@ -1,4 +1,5 @@
 import mdui from 'mdui'
+//登录
 var login = function({
   commit,
   state
@@ -8,7 +9,7 @@ var login = function({
     commit('changeUser', event.user)
     event.$axios({
       methods: 'post',
-      url: 'public/login.json',
+      url: '/public/login.json',
       data: {
         account: event.user.account,
         password: event.user.password,
@@ -16,7 +17,7 @@ var login = function({
       timeout: 5000,
     }).then(function(res) {
       console.log(res)
-      if (res.data.code == 1) {
+      if (res.data.code === 0) {
         //登陆成功
         event.$store.commit('User/changeLogin', true)
         event.$router.replace('/')
@@ -38,6 +39,8 @@ var login = function({
     })
   }
 }
+
+//获取用户信息
 var getUser = function({
   commit,
   state
@@ -46,7 +49,7 @@ var getUser = function({
   commit('changeLoad', true);
   event.$axios({
     methods: 'get',
-    url: 'public/user.json',
+    url: '/public/user.json',
     data: {
       account: event.user.account,
       //多层验证增加安全性
@@ -54,7 +57,6 @@ var getUser = function({
     },
     timeout: 5000,
   }).then(function(res) {
-      console.log(res)
     event.$store.commit('User/changeUser', res.data.user)
   }).catch(function(err) {
     let banner = mdui.snackbar({

@@ -21,7 +21,8 @@ export default {
     forum:'首页',
     friend:'好友',
     message:'消息',
-    newPost:'发布帖子'
+    newPost:'发布帖子',
+    settings:'设置',
   },
   post:{
     replyTime:'回复时间',
@@ -42,5 +43,10 @@ export default {
     reply:'最新回复',
     settings:'设置',
     about:'关于'
+  },
+  settings:{
+    language:'多语言设置',
+    theme:'主题',
+    darkMode:'夜间模式'
   }
 }

@@ -1,4 +1,5 @@
 const routes = [{
+    //Main
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [{
@@ -8,14 +9,14 @@ const routes = [{
           keepAlive: true,
           scrollTop: 0,
         },
-        component: () => import('pages/Home.vue'),
+        component: () => import('pages/Home/Home.vue'),
       }, {
         path: 'newpost',
         meta: {
           index: 1,
           keepAlive: true,
         },
-        component: () => import('pages/NewPost.vue'),
+        component: () => import('pages/Home/NewPost.vue'),
       },
       {
         path: 'friend',
@@ -24,7 +25,7 @@ const routes = [{
           keepAlive: true,
           scrollTop: 0,
         },
-        component: () => import('pages/Friend.vue'),
+        component: () => import('pages/Friend/Friend.vue'),
       }, {
         path: 'message',
         meta: {
@@ -32,10 +33,25 @@ const routes = [{
           keepAlive: true,
           scrollTop: 0,
         },
-        component: () => import('pages/Message.vue'),
+        component: () => import('pages/Message/Message.vue'),
+      },
+      //Setting
+      {
+        path: '/settings',
+        meta: {
+          index: 999,
+        },
+        component: () => import('pages/Settings/Settings.vue'),
+      }, {
+        path: '/settings/language',
+        meta: {
+          index: 1000
+        },
+        component: () => import('pages/Settings/Language.vue')
       }
     ]
   },
+  //Login
   {
     path: '/login',
     component: () => import('layouts/LoginLayout.vue'),
@@ -44,16 +60,16 @@ const routes = [{
       meta: {
         index: 0,
       },
-      component: () => import('pages/Login.vue')
+      component: () => import('pages/Login/Login.vue')
     }, {
       path: 'register',
       meta: {
         index: 1,
         keepAlive: true,
       },
-      component: () => import('pages/Register.vue'),
+      component: () => import('pages/Login/Register.vue'),
     }]
-  }
+  },
 ]
 
 // Always leave this as last one

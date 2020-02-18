@@ -1,5 +1,5 @@
 <template>
-  <section id='Login'>
+  <section id='login'>
     <div id='login--container'>
       <div class='flex-spacer'></div>
       <div id='login--input'>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id='home--newPost'>
     <header class='mdui-text-color-theme-text'><i class="mdui-icon material-icons">&#xe0cb;</i><span>{{$t('newPost.header')}}</span></header>
     <div class="mdui-divider"></div>
     <section>
@@ -13,7 +13,7 @@
       <div class="mdui-textfield mdui-textfield-floating-label mdui-textfield-has-bottom" :class="{'mdui-textfield-invalid-html5':error.contentErr}">
         <i class="mdui-icon material-icons">chat</i>
         <label class="mdui-textfield-label">{{$t('newPost.content')}}</label>
-        <textarea class="mdui-textfield-input" maxlength="140" required v-model='post.content'></textarea>
+        <textarea class="mdui-textfield-input" maxlength="300" required v-model='post.content'></textarea>
         <div class="mdui-textfield-error">{{$t('newPost.contentErr')}}</div>
       </div>
 
@@ -56,19 +56,28 @@
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
+        //改变顶部title
         vm.$store.commit('changeTitle', vm.$t('nav.newPost'))
+
+        //修改组件状态
         vm.$store.commit('Display/fab', false)
+        vm.$store.commit('Display/searchBar', false)
+        vm.$store.commit('Display/refresh', false)
+          vm.$store.commit('Display/nav', false)
+
+        //关闭loading组件
         vm.$store.commit('Home/changeLoad', false)
+
       })
-    },
-    beforeRouteLeave(to, from, next) {
-      if (to.meta.index === 0) {
-        this.$store.commit('Display/fab', true)
-      }
-      next()
     },
     mounted() {
       mdui.mutation()
+    },
+    activated(){
+      console.log('activated')
+    },
+    deactivated(){
+      console.log('deactivated')
     }
   }
 </script>
