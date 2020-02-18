@@ -9,14 +9,16 @@
           <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
       </transition>
-      <transition :name="transitionName">
-        <router-view v-if="!$route.meta.keepAlive"></router-view>
-      </transition>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </section>
 
-    <Nav></Nav>
+
+      <Nav></Nav>
     <Drawer></Drawer>
+
+    <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <Fab></Fab>
+    </transition>
   </main>
 </template>
 
@@ -35,6 +37,10 @@
       Drawer,
       Fab
     },
+    methods: {
+      //初始化数据
+      init() {}
+    },
     computed: {
       user() {
         return this.$store.state.User.user
@@ -51,7 +57,7 @@
         if (!vm.$store.state.User.login) {
           vm.$router.replace('/login')
         } else {
-          
+
           //进行初始化用户数据
           vm.$store.dispatch('User/getUser', vm);
         }
@@ -61,9 +67,9 @@
       $route(to, from) {
         if (to.meta.index > from.meta.index) {
           this.transitionName = 'slide-left'
-        } else if(to.meta.index < from.meta.index){
+        } else if (to.meta.index < from.meta.index) {
           this.transitionName = 'slide-right'
-        }else{
+        } else {
           this.transitionName = ''
         }
       }

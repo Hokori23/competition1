@@ -1,7 +1,7 @@
 <template>
-  <setion id='settings--language'>
+  <section id='settings--language'>
 
-  </setion>
+  </section>
 </template>
 
 <script>

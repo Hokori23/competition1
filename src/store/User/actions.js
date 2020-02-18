@@ -17,7 +17,7 @@ var login = function({
       timeout: 5000,
     }).then(function(res) {
       console.log(res)
-      if (res.data.code === 0) {
+      if (res.data.code < 1) {
         //登陆成功
         event.$store.commit('User/changeLogin', true)
         event.$router.replace('/')

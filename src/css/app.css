@@ -96,3 +96,10 @@ html,
  opacity: 0;
  transform: translate3d(-100%, 0, 0);
 }
+
+
+.mdui-theme-layout-dark #nav.mdui-bottom-nav,
+.mdui-theme-layout-dark #drawer.mdui-drawer{
+	color: #ffffff !important;
+	background-color: #212121 !important;
+}

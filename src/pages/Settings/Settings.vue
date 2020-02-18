@@ -24,8 +24,8 @@
 <script>
   export default {
     name: 'settings',
-    methods:{
-      language(){
+    methods: {
+      language() {
         this.$router.push('/settings/language')
       }
     },
@@ -47,9 +47,37 @@
   }
 </script>
 
-<style>
+<style scoped>
   .mdui-typo-subheading {
     overflow: visible !important;
     margin: 0 !important;
+  }
+
+  ul.mdui-list {
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+    /* border-bottom: 1px solid rgba(0, 0, 0, .085); */
+  }
+
+  ul.mdui-list:before,
+  ul.mdui-list:after {
+    position: absolute;
+    top: 8px;
+    content: '';
+    height: 100%;
+    width: 1px;
+  }
+
+  ul.mdui-list:before {
+    border-left: 1px solid rgba(0, 0, 0, .12);
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  ul.mdui-list:after {
+    right: 0;
+    transform: translateX(100%);
+    border-right: 1px solid rgba(0, 0, 0, .12);
   }
 </style>

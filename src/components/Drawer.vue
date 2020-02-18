@@ -1,5 +1,5 @@
 <template>
-  <aside class="mdui-drawer mdui-drawer-close" id='drawer'>
+  <aside class="mdui-drawer mdui-drawer-close mdui-color-theme-50" id='drawer'>
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item">
@@ -74,10 +74,21 @@
     margin: 10px 0;
   }
 
+  #avatar::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    top: 0;
+    border-top: 1px solid rgba(0,0,0,.12);
+  }
   #avatar {
+    position: relative;
     padding: 3% 0;
   }
-
+/*  #drawer{
+    border-right: 1px solid rgba(0,0,0,.12);
+  } */
   #drawer>.mdui-divider {
     margin: 0 5% 5% 5%;
   }

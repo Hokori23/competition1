@@ -88,7 +88,7 @@
 </script>
 
 <style scoped>
-  .mdui-card:first-child {
+/*  .mdui-card:first-child {
     margin: 0;
     margin-bottom: 15px;
   }
@@ -96,10 +96,13 @@
   .mdui-card:last-child {
     margin: 0;
     margin-top: 15px;
-  }
+  } */
 
   .mdui-card {
-    margin: 15px 0px;
+    /* margin: 15px 0px; */
+    /* margin-bottom: 15px; */
+    max-width: 500px;
+    margin: 0 auto 15px auto
   }
 
   .mdui-card-header {

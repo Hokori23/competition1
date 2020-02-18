@@ -18,7 +18,7 @@
       </div>
 
       <footer>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" @click='confirm'>{{$t('newPost.confirm')}}</button>
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme" @click='confirm'>{{$t('newPost.confirm')}}</button>
       </footer>
     </section>
   </section>
@@ -73,12 +73,6 @@
     mounted() {
       mdui.mutation()
     },
-    activated(){
-      console.log('activated')
-    },
-    deactivated(){
-      console.log('deactivated')
-    }
   }
 </script>
 
@@ -102,5 +96,10 @@
     max-width: 80%;
     text-align: center;
     opacity: .5;
+  }
+  #home--newPost>section>div{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
