@@ -67,7 +67,7 @@ module.exports = function(ctx) {
       preloadChunks: true,
       // extractCSS: false,
 
-      //DIY
+      //DIY***************************************************************
       publicPath: 'pwa',
       vueRouterBase: 'pwa',
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack

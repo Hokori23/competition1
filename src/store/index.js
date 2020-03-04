@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import Home from './Home'
 import Display from './Display'
 import User from './User'
+import Setting from './Setting'
 Vue.use(Vuex)
 
 /*
@@ -21,7 +22,8 @@ export default function( /* { ssrContext } */ ) {
     modules: {
       Home,
       Display,
-      User
+      User,
+      Setting
     },
     state: {
       title: null,

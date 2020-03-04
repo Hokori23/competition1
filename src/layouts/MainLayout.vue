@@ -1,5 +1,6 @@
 <template>
-  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar mdui-bottom-nav-fixed'>
+  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar mdui-bottom-nav-fixed'
+    :class="{'mdui-theme-layout-dark':darkMode}">
     <Header></Header>
     <Loading></Loading>
 
@@ -13,11 +14,11 @@
     </section>
 
 
-      <Nav></Nav>
+    <Nav></Nav>
     <Drawer></Drawer>
 
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-    <Fab></Fab>
+      <Fab></Fab>
     </transition>
   </main>
 </template>
@@ -39,16 +40,39 @@
     },
     methods: {
       //初始化数据
-      init() {}
+      init() {
+        //初始化语言设置-----------------------
+        let language = localStorage.getItem('language');
+        if (language == null || language.length === 0) { //第一次初始化
+          localStorage.setItem('language', 'zh');
+          language = localStorage.getItem('language');
+        }
+        this.$store.commit('Setting/changeLanguage', language)
+        //-----------------------------------
+
+
+
+        //初始化夜间模式-----------------------
+        let darkMode = localStorage.getItem('darkMode');
+        if (darkMode == null || darkMode.length === 0) { //第一次初始化
+          localStorage.setItem('darkMode', 0)
+          darkMode = localStorage.getItem('darkMode');
+        }
+        this.$store.commit('Setting/changeDarkMode', darkMode)
+        //-----------------------------------
+      }
     },
     computed: {
       user() {
         return this.$store.state.User.user
+      },
+      darkMode() {
+        return this.$store.state.Setting.darkMode == 1
       }
     },
     data() {
       return {
-        transitionName: ''
+        transitionName: '',
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -73,7 +97,11 @@
           this.transitionName = ''
         }
       }
+    },
+    mounted() {
+      this.init()
     }
+
   }
 </script>
 <style scoped>

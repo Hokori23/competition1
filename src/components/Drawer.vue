@@ -3,7 +3,7 @@
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item">
-        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="$event.target.src = './statics/icons/avatar-fill.png';$event.onerror=null;" /></div>
+        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="imgErr($event)" /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>
     </ul>
@@ -52,6 +52,10 @@
         if (this.$router.currentRoute.path !== '/settings') {
           this.$router.push('/settings')
         }
+      },
+      imgErr(e) {
+        e.target.src = './statics/icons/avatar-fill.png';
+        e.onerror = null;
       }
     }
   }
@@ -74,19 +78,21 @@
     margin: 10px 0;
   }
 
-  #avatar::before{
+  #avatar::before {
     position: absolute;
     content: '';
     width: 100%;
     height: 1px;
     top: 0;
-    border-top: 1px solid rgba(0,0,0,.12);
+    border-top: 1px solid rgba(0, 0, 0, .12);
   }
+
   #avatar {
     position: relative;
     padding: 3% 0;
   }
-/*  #drawer{
+
+  /*  #drawer{
     border-right: 1px solid rgba(0,0,0,.12);
   } */
   #drawer>.mdui-divider {

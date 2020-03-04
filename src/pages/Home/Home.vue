@@ -3,7 +3,7 @@
     <div class="mdui-card" v-for='item of post' @click="to(item.id,item.title)">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="$event.target.src = './statics/icons/avatar-fill.png';$event.onerror=null;" />
+        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
         <div class="mdui-card-header-title">{{item.nickName}}</div>
         <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
         </div>
@@ -42,6 +42,10 @@
       getPost() {
         this.$store.dispatch('Home/getPost', this)
       },
+      imgErr(e) {
+        e.target.src = './statics/icons/avatar-fill.png';
+        e.onerror = null;
+      }
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
@@ -88,7 +92,7 @@
 </script>
 
 <style scoped>
-/*  .mdui-card:first-child {
+  /*  .mdui-card:first-child {
     margin: 0;
     margin-bottom: 15px;
   }

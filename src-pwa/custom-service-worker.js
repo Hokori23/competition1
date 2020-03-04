@@ -8,20 +8,12 @@ var cacheName = 'staticFiles'
 var cacheFiles = [
     '/',
     './index.html',
-    './css/mdui.min.css',
-    './fonts/roboto/Roboto-Black.woff',
-    './fonts/roboto/Roboto-Black.woff2',
-    './fonts/roboto/Roboto-Medium.woff',
-    './fonts/roboto/Roboto-Medium.woff2',
-    './fonts/roboto/Roboto-Thin.woff',
-    './fonts/roboto/Roboto-Thin.woff2',
 ];
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(cacheName)
-    .then(cache => cache.addAll([
-      'index.html'
-    ]))
+    .then(cache => cache.addAll(cacheFiles))
   )
 })
 

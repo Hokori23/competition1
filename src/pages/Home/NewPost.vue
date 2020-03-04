@@ -18,7 +18,7 @@
       </div>
 
       <footer>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme" @click='confirm'>{{$t('newPost.confirm')}}</button>
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme" @click='confirm'>{{$t('common.confirm')}}</button>
       </footer>
     </section>
   </section>
@@ -63,7 +63,7 @@
         vm.$store.commit('Display/fab', false)
         vm.$store.commit('Display/searchBar', false)
         vm.$store.commit('Display/refresh', false)
-          vm.$store.commit('Display/nav', false)
+        vm.$store.commit('Display/nav', false)
 
         //关闭loading组件
         vm.$store.commit('Home/changeLoad', false)

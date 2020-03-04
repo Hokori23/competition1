@@ -48,5 +48,9 @@ export default {
     language:'多语言设置',
     theme:'主题',
     darkMode:'夜间模式'
+  },
+  common:{
+    confirm:'确定',
+    cancel:'取消'
   }
 }

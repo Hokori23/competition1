@@ -48,5 +48,9 @@ export default {
     language:'Language',
     theme:'Theme',
     darkMode:'DarkMode'
+  },
+  common:{
+    confirm:'Confirm',
+    cancel:'Cancel'
   }
 }

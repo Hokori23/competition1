@@ -1,5 +1,5 @@
 <template>
-  <section id='setting'>
+  <section id='setting' class='setting'>
     <ul class="mdui-list">
       <li class="mdui-list-item mdui-ripple" @click='language()'>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe8e2;</i>
@@ -9,11 +9,11 @@
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe40a;</i>
         <div class="mdui-list-item-content">{{$t('settings.theme')}}</div>
       </li>
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" @click.self='darkMode()'>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe3a9;</i>
         <div class="mdui-list-item-content">{{$t('settings.darkMode')}}</div>
         <label class="mdui-switch">
-          <input type="checkbox" checked />
+          <input type="checkbox" v-model='checked' />
           <i class="mdui-switch-icon"></i>
         </label>
       </li>
@@ -27,6 +27,15 @@
     methods: {
       language() {
         this.$router.push('/settings/language')
+      },
+      darkMode() {
+        console.log('click')
+        this.checked = !this.checked;
+      }
+    },
+    data() {
+      return {
+        checked: Boolean(Number(this.$store.state.Setting.darkMode))
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -44,24 +53,29 @@
         vm.$store.commit('Home/changeLoad', false)
       })
     },
+    watch: {
+      checked(newValue) {
+        this.$store.commit('Setting/changeDarkMode', Number(newValue))
+      }
+    }
   }
 </script>
 
-<style scoped>
-  .mdui-typo-subheading {
+<style>
+  .setting .mdui-typo-subheading {
     overflow: visible !important;
     margin: 0 !important;
   }
 
-  ul.mdui-list {
+  .setting ul.mdui-list {
     margin: 0 auto;
     max-width: 500px;
     position: relative;
     /* border-bottom: 1px solid rgba(0, 0, 0, .085); */
   }
 
-  ul.mdui-list:before,
-  ul.mdui-list:after {
+  .setting ul.mdui-list:before,
+  .setting ul.mdui-list:after {
     position: absolute;
     top: 8px;
     content: '';
@@ -69,13 +83,13 @@
     width: 1px;
   }
 
-  ul.mdui-list:before {
+  .setting ul.mdui-list:before {
     border-left: 1px solid rgba(0, 0, 0, .12);
     left: 0;
     transform: translateX(-100%);
   }
 
-  ul.mdui-list:after {
+  .setting ul.mdui-list:after {
     right: 0;
     transform: translateX(100%);
     border-right: 1px solid rgba(0, 0, 0, .12);
