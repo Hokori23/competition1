@@ -17,6 +17,13 @@ const routes = [{
           keepAlive: true,
         },
         component: () => import('pages/Home/NewPost.vue'),
+      }, {
+        path: 'post/:postID/:postTitle',
+        meta: {
+          index: 2,
+          keepAlive: true,
+        },
+        component: () => import('pages/Home/Post.vue'),
       },
       {
         path: 'friend',
@@ -35,15 +42,23 @@ const routes = [{
         },
         component: () => import('pages/Message/Message.vue'),
       },
+      //User
+      {
+        path: 'user',
+        meta: {
+          index: 999,
+        },
+        component: () => import('pages/User/User.vue')
+      },
       //Setting
       {
-        path: '/settings',
+        path: 'settings',
         meta: {
           index: 999,
         },
         component: () => import('pages/Settings/Settings.vue'),
       }, {
-        path: '/settings/language',
+        path: 'settings/language',
         meta: {
           index: 1000
         },

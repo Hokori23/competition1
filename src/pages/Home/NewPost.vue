@@ -1,5 +1,5 @@
 <template>
-  <section id='home--newPost'>
+  <section id='home--newPost' class='page'>
     <header class='mdui-text-color-theme-text'><i class="mdui-icon material-icons">&#xe0cb;</i><span>{{$t('newPost.header')}}</span></header>
     <div class="mdui-divider"></div>
     <section>
@@ -64,10 +64,6 @@
         vm.$store.commit('Display/searchBar', false)
         vm.$store.commit('Display/refresh', false)
         vm.$store.commit('Display/nav', false)
-
-        //关闭loading组件
-        vm.$store.commit('Home/changeLoad', false)
-
       })
     },
     mounted() {

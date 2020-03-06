@@ -1,6 +1,5 @@
 <template>
-  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar mdui-bottom-nav-fixed'
-    :class="{'mdui-theme-layout-dark':darkMode}">
+  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar mdui-bottom-nav-fixed'>
     <Header></Header>
     <Loading></Loading>
 
@@ -10,7 +9,9 @@
           <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
       </transition>
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <transition :name="transitionName">
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </transition>
     </section>
 
 
@@ -18,7 +19,10 @@
     <Drawer></Drawer>
 
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+
+      <!-- <keep-alive> -->
       <Fab></Fab>
+      <!-- </keep-alive> -->
     </transition>
   </main>
 </template>
@@ -38,36 +42,9 @@
       Drawer,
       Fab
     },
-    methods: {
-      //初始化数据
-      init() {
-        //初始化语言设置-----------------------
-        let language = localStorage.getItem('language');
-        if (language == null || language.length === 0) { //第一次初始化
-          localStorage.setItem('language', 'zh');
-          language = localStorage.getItem('language');
-        }
-        this.$store.commit('Setting/changeLanguage', language)
-        //-----------------------------------
-
-
-
-        //初始化夜间模式-----------------------
-        let darkMode = localStorage.getItem('darkMode');
-        if (darkMode == null || darkMode.length === 0) { //第一次初始化
-          localStorage.setItem('darkMode', 0)
-          darkMode = localStorage.getItem('darkMode');
-        }
-        this.$store.commit('Setting/changeDarkMode', darkMode)
-        //-----------------------------------
-      }
-    },
     computed: {
       user() {
         return this.$store.state.User.user
-      },
-      darkMode() {
-        return this.$store.state.Setting.darkMode == 1
       }
     },
     data() {
@@ -78,11 +55,10 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         //检查登陆状态
-        if (!vm.$store.state.User.login) {
+        if (vm.$store.state.User.user === null || !vm.$store.state.User.user.login) {
           vm.$router.replace('/login')
         } else {
-
-          //进行初始化用户数据
+          //进行用户数据初始化
           vm.$store.dispatch('User/getUser', vm);
         }
       })
@@ -96,12 +72,11 @@
         } else {
           this.transitionName = ''
         }
+        //关闭loading组件
+        this.$store.commit('Home/changeLoad', false)
+        // this.$store.state.Display.snackBar.close()
       }
-    },
-    mounted() {
-      this.init()
     }
-
   }
 </script>
 <style scoped>
@@ -111,5 +86,13 @@
 
   .loading {
     transform: translate3d(0, 45px, 0);
+  }
+
+  #page {
+    width: 100%;
+  }
+
+  .page {
+    width: inherit;
   }
 </style>

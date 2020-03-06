@@ -1,5 +1,5 @@
 <template>
-  <section id='message'>
+  <section id='message' class='page'>
 
   </section>
 </template>
@@ -11,7 +11,7 @@
       next(vm => {
         //改变顶部title
         vm.$store.commit('changeTitle', vm.$t('nav.message'))
-        
+
         //更新本页滚动位置
         {
           const scrollTop = vm.$route.meta.scrollTop;
@@ -20,15 +20,13 @@
             $content.scrollTop = scrollTop;
           }
         }
-        
+
         //修改组件状态
         {
           vm.$store.commit('Display/fab', true)
           vm.$store.commit('Display/searchBar', true)
           vm.$store.commit('Display/refresh', true)
           vm.$store.commit('Display/nav', true)
-          //关闭loading组件
-          vm.$store.commit('Home/changeLoad', false)
         }
       })
     },

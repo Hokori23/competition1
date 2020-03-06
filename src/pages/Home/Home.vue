@@ -1,6 +1,6 @@
 <template>
-  <section id='home'>
-    <div class="mdui-card" v-for='item of post' @click="to(item.id,item.title)">
+  <section id='home' class='page'>
+    <div class="mdui-card home--post-item mdui-ripple" v-for='item of post' @click="to(item.postID,item.postTitle)">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
         <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
@@ -11,15 +11,15 @@
 
       <!-- 卡片的标题 -->
       <div class="mdui-card-primary">
-        <div class="mdui-card-primary-title mdui-text-color-theme">{{item.title}}</div>
+        <div class="mdui-card-primary-title mdui-text-color-theme" :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{item.postTitle}}</div>
       </div>
 
       <!-- 卡片的内容 -->
       <div class="mdui-card-content post-content">{{item.postContent}}</div>
-      <div class='mdui-card-content card-bottom mdui-text-color-theme'>
-        <span class='card-time'>{{$t('post.replyTime')}}: {{item.replyTime}}
+      <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+        <span>{{$t('post.replyTime')}}: {{item.replyTime}}
         </span>
-        <span class='card-time'>{{$t('post.postTime')}}: {{item.postTime}}
+        <span>{{$t('post.postTime')}}: {{item.postTime}}
         </span>
       </div>
     </div>
@@ -36,8 +36,8 @@
       }
     },
     methods: {
-      to(id, title) {
-
+      to(id,title) {
+        this.$router.push(`/post/${id}/${title}`);
       },
       getPost() {
         this.$store.dispatch('Home/getPost', this)
@@ -54,7 +54,8 @@
 
         //获取帖子数据
         {
-          if (vm.$store.state.User.login) {
+          /***************bug*************/
+          if (vm.$store.state.User.user!==null&&vm.$store.state.User.user.login) {
             vm.$store.dispatch('Home/getPost', vm)
           }
         }
@@ -74,8 +75,6 @@
           vm.$store.commit('Display/searchBar', true)
           vm.$store.commit('Display/refresh', true)
           vm.$store.commit('Display/nav', true)
-          //关闭loading组件
-          // vm.$store.commit('Home/changeLoad', false)
         }
       })
     },
@@ -101,6 +100,31 @@
     margin: 0;
     margin-top: 15px;
   } */
+  #home{
+    box-sizing: border-box;
+    padding:0 1rem;
+  }
+  .home--post-item {
+    cursor: pointer;
+  }
+
+  #home .mdui-card-primary-title {
+    font-size: 18px;
+    line-height: 32px;
+    max-height: 32px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 1024px) {
+    .mdui-card:first-child {
+      margin-top: 15px;
+    }
+  }
 
   .mdui-card {
     /* margin: 15px 0px; */
@@ -110,12 +134,12 @@
   }
 
   .mdui-card-header {
-    padding: 10px 16px;
+    padding: 10px 16px 0 16px;
     height: auto;
   }
 
   .mdui-card-primary {
-    padding: 0px 16px 5px 16px;
+    padding: 0px 16px;
   }
 
   .mdui-card-content {
@@ -132,9 +156,12 @@
   }
 
   .card-bottom {
-    margin: 8px 0;
+    margin: 5px 0;
     display: flex;
     justify-content: space-between
+  }
+  .card-bottom >span{
+    font-size: 11px;
   }
 
   .card-bottom>span {

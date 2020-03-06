@@ -1,0 +1,50 @@
+[{
+  "nickName": "Hokori",
+  "avatarURL": "https://hokori.online/public/avatar.jpg",
+  "school": "华信软件学院",
+  "majority": "软件工程",
+  "grade": "2018",
+  "postID": "000000",
+  "postTitle": "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
+  "postContent": "测试测试测试测试测试测试测试\n测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
+  "postTime": "20:50",
+  "reply": [{
+    "nickName": "Test",
+    "avatarURL": "https://hokori.online/public/avatar.jpg",
+    "school": "华信软件学院",
+    "majority": "软件工程",
+    "grade": "2018",
+    "poster": false,
+    "postContent": "沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发沙发",
+    "replyTime": "20:51",
+    "children": [{
+      "nickName": "Test",
+      "avatarURL": "https://hokori.online/public/avatar.jpg",
+      "school": "华信软件学院",
+      "majority": "软件工程",
+      "grade": "2018",
+      "poster": false,
+      "target":null,
+      "postContent": "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
+      "replyTime": "20:51"
+    }]
+  }, {
+    "nickName": "Hokori",
+    "avatarURL": "https://hokori.online/public/avatar.jpg",
+    "school": "华信软件学院",
+    "majority": "软件工程",
+    "grade": "2018",
+    "poster": true,
+    "postContent": "捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞捞",
+    "replyTime": "20:51"
+  }, {
+    "nickName": "Hokori",
+    "avatarURL": "https://hokori.online/public/avatar.jpg",
+    "school": "华信软件学院",
+    "majority": "软件工程",
+    "grade": "2018",
+    "poster": true,
+    "postContent": "地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板地板",
+    "replyTime": "20:51"
+  }]
+}]

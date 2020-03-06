@@ -1,5 +1,5 @@
 <template>
-  <section id='friend'>
+  <section id='friend' class='page'>
 
   </section>
 </template>
@@ -27,8 +27,6 @@
           vm.$store.commit('Display/searchBar', true)
           vm.$store.commit('Display/refresh', true)
           vm.$store.commit('Display/nav', true)
-          //关闭loading组件
-          vm.$store.commit('Home/changeLoad', false)
         }
       })
     },

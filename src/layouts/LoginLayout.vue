@@ -11,7 +11,7 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         //检查登陆状态
-        if (vm.$store.state.User.login) {
+        if (vm.$store.state.User.user !== null && vm.$store.state.User.user.login) {
           vm.$router.replace('/')
         }
       })

@@ -44,10 +44,14 @@ export default {
     settings:'Settings',
     about:'About'
   },
+  user:{
+    logout:'LogOut'
+  },
   settings:{
     language:'Language',
     theme:'Theme',
-    darkMode:'DarkMode'
+    darkMode:'DarkMode',
+    reboot:'Reboot to apply the settings'
   },
   common:{
     confirm:'Confirm',

@@ -44,10 +44,14 @@ export default {
     settings:'设置',
     about:'关于'
   },
+  user:{
+    logout:'退出登录'
+  },
   settings:{
     language:'多语言设置',
     theme:'主题',
-    darkMode:'夜间模式'
+    darkMode:'夜间模式',
+    reboot:'重启后设置生效'
   },
   common:{
     confirm:'确定',

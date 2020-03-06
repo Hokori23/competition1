@@ -1,5 +1,5 @@
 <template>
-  <section id='setting' class='setting'>
+  <section id='setting' class='list page'>
     <ul class="mdui-list">
       <li class="mdui-list-item mdui-ripple" @click='language()'>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe8e2;</i>
@@ -29,7 +29,6 @@
         this.$router.push('/settings/language')
       },
       darkMode() {
-        console.log('click')
         this.checked = !this.checked;
       }
     },
@@ -41,16 +40,13 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         //改变顶部title
-        vm.$store.commit('changeTitle', vm.$t('nav.settings'))
+        vm.$store.commit('changeTitle', vm.$t('drawer.settings'))
 
         //修改组件状态
         vm.$store.commit('Display/fab', false)
         vm.$store.commit('Display/searchBar', false)
         vm.$store.commit('Display/refresh', false)
         vm.$store.commit('Display/nav', false)
-
-        //关闭loading组件
-        vm.$store.commit('Home/changeLoad', false)
       })
     },
     watch: {
@@ -62,20 +58,23 @@
 </script>
 
 <style>
-  .setting .mdui-typo-subheading {
+  .list,.list ul,.list ul li{
+    width: inherit;
+  }
+  .list .mdui-typo-subheading {
     overflow: visible !important;
     margin: 0 !important;
   }
 
-  .setting ul.mdui-list {
+  .list ul.mdui-list {
     margin: 0 auto;
     max-width: 500px;
     position: relative;
     /* border-bottom: 1px solid rgba(0, 0, 0, .085); */
   }
 
-  .setting ul.mdui-list:before,
-  .setting ul.mdui-list:after {
+  .list ul.mdui-list:before,
+  .list ul.mdui-list:after {
     position: absolute;
     top: 8px;
     content: '';
@@ -83,13 +82,13 @@
     width: 1px;
   }
 
-  .setting ul.mdui-list:before {
+  .list ul.mdui-list:before {
     border-left: 1px solid rgba(0, 0, 0, .12);
     left: 0;
     transform: translateX(-100%);
   }
 
-  .setting ul.mdui-list:after {
+  .list ul.mdui-list:after {
     right: 0;
     transform: translateX(100%);
     border-right: 1px solid rgba(0, 0, 0, .12);

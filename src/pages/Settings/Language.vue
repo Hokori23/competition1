@@ -1,5 +1,5 @@
 <template>
-  <section id='settings--language' class='setting'>
+  <section id='settings--language' class='list page'>
 
     <ul class="mdui-list">
       <li class="mdui-list-item mdui-ripple" @click.self="language('zh')">
@@ -44,18 +44,23 @@
     },
     methods: {
       language(value) {
-        console.log('click')
         this.lang = value;
       }
     },
     beforeRouteLeave(to, from, next) {
       let oldLang = this.$store.state.Setting.language;
       if (oldLang !== this.lang) {
-        this.$store.commit('Setting/changeLanguage', this.lang)
-        location.reload()
-      } else {
-        next()
+        this.$store.commit('Setting/changeLanguage', this.lang);
+        mdui.dialog({
+          content: this.$t('settings.reboot'),
+          buttons: [
+            {
+              text: this.$t('common.confirm')
+            },
+          ]
+        });
       }
+      next()
     }
   }
 </script>

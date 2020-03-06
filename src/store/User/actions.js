@@ -6,7 +6,6 @@ var login = function({
 }, event) {
   if (!state.load) {
     commit('changeLoad', true);
-    commit('changeUser', event.user)
     event.$axios({
       methods: 'post',
       url: '/public/login.json',
@@ -19,7 +18,11 @@ var login = function({
       console.log(res)
       if (res.data.code < 1) {
         //登陆成功
-        event.$store.commit('User/changeLogin', true)
+        let user = {
+          account: event.user.account,
+          login: true,
+        };
+        event.$store.commit('User/changeUser', user)
         event.$router.replace('/')
       } else {
         mdui.snackbar({
@@ -51,13 +54,13 @@ var getUser = function({
     methods: 'get',
     url: '/public/user.json',
     data: {
-      account: event.user.account,
+      account: event.account,
       //多层验证增加安全性
       //password:event.user.password
     },
     timeout: 5000,
   }).then(function(res) {
-    event.$store.commit('User/changeUser', res.data.user)
+    event.$store.commit('User/changeUser', Object.assign(res.data.user, event.$store.state.User.user))
   }).catch(function(err) {
     let banner = mdui.snackbar({
       message: `${event.$t('user.timeOutErr')}`,
@@ -67,6 +70,7 @@ var getUser = function({
         banner.close;
         event.$store.dispatch('User/getUser', event);
       },
+      closeOnOutsideClick: false,
     })
   }).finally(() => {
     //关闭提交状态

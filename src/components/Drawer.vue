@@ -11,8 +11,7 @@
     <div class="mdui-divider"></div>
     <!-- divider -->
     <ul class="mdui-list" id='drawer--list'>
-
-      <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click.stop="userCenter">
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe7fd;</i>
         <div class="mdui-list-item-content">{{$t('drawer.user')}}</div>
       </li>
@@ -27,7 +26,7 @@
       <!-- divider -->
       <div class="mdui-divider"></div>
       <!-- divider -->
-      <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click="setting">
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click.stop="setting">
         <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
         <div class="mdui-list-item-content">{{$t('drawer.settings')}}</div>
       </li>
@@ -44,10 +43,15 @@
     name: 'Drawer',
     computed: {
       user() {
-        return this.$store.state.User.user
-      }
+        return this.$store.state.User.user||{}
+      },
     },
     methods: {
+      userCenter() {
+        if (this.$router.currentRoute.path !== '/user') {
+          this.$router.push('/user')
+        }
+      },
       setting() {
         if (this.$router.currentRoute.path !== '/settings') {
           this.$router.push('/settings')

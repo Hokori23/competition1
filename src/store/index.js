@@ -8,6 +8,14 @@ import User from './User'
 import Setting from './Setting'
 Vue.use(Vuex)
 
+
+
+
+
+//drag
+import VueDragResize from 'vue-drag-resize'
+
+Vue.component('vue-drag-resize', VueDragResize)
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;

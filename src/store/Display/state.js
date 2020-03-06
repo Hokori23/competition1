@@ -3,6 +3,7 @@ export default function() {
 	  fab:true,
     searchBar:true,
     refresh:true,
-    nav:true
+    nav:true,
+    snackBar:null,
   }
 }

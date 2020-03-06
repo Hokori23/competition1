@@ -10,9 +10,13 @@ var refresh = function(state, value) {
 var nav = function(state, value) {
   state.nav = value
 }
+var snackBar = function(state, sn) {
+  state.snackBar = sn;
+}
 export {
   fab,
   searchBar,
   refresh,
-  nav
+  nav,
+  snackBar
 }

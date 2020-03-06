@@ -1,14 +1,11 @@
-var changeLogin = function(state, value) {
-  state.login = value
-}
-var changeLoad = function(state,value){
+var changeLoad = function(state, value) {
   state.load = value
 }
-var changeUser = function(state,value){
+var changeUser = function(state, value) {
   state.user = value
+  localStorage.setItem('user', JSON.stringify(value));
 }
 export {
-  changeLogin,
   changeLoad,
   changeUser,
 }
