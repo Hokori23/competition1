@@ -15,7 +15,6 @@ var login = function({
       },
       timeout: 5000,
     }).then(function(res) {
-      console.log(res)
       if (res.data.code < 1) {
         //登陆成功
         let user = {
@@ -62,12 +61,12 @@ var getUser = function({
   }).then(function(res) {
     event.$store.commit('User/changeUser', Object.assign(res.data.user, event.$store.state.User.user))
   }).catch(function(err) {
-    let banner = mdui.snackbar({
+    mdui.snackbar({
       message: `${event.$t('user.timeOutErr')}`,
-      buttonText: event.$t('user.try'),
+      buttonText: event.$t('common.reconnect'),
       timeout: 0,
       onButtonClick: function() {
-        banner.close;
+        this.close;
         event.$store.dispatch('User/getUser', event);
       },
       closeOnOutsideClick: false,

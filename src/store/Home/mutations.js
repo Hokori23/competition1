@@ -4,7 +4,13 @@ var changeLoad = function(state,value) {
 var changePost = function(state, newPost) {
   state.post = newPost
 }
+
+var changeSinglePost = function(state, newPost) {
+  state.singlePost = newPost
+}
+
 export {
   changeLoad,
-  changePost
+  changePost,
+  changeSinglePost
 }

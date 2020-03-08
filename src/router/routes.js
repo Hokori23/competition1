@@ -4,6 +4,7 @@ const routes = [{
     component: () => import('layouts/MainLayout.vue'),
     children: [{
         path: '',
+        name:'Home',
         meta: {
           index: 0,
           keepAlive: true,
@@ -12,6 +13,7 @@ const routes = [{
         component: () => import('pages/Home/Home.vue'),
       }, {
         path: 'newpost',
+        name:'NewPost',
         meta: {
           index: 1,
           keepAlive: true,
@@ -19,9 +21,11 @@ const routes = [{
         component: () => import('pages/Home/NewPost.vue'),
       }, {
         path: 'post/:postID/:postTitle',
+        name:'Post',
         meta: {
           index: 2,
           keepAlive: true,
+          scrollTop: 0,
         },
         component: () => import('pages/Home/Post.vue'),
       },
@@ -58,7 +62,7 @@ const routes = [{
         },
         component: () => import('pages/Settings/Settings.vue'),
       }, {
-        path: 'settings/language',
+        path: 'language',
         meta: {
           index: 1000
         },

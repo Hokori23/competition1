@@ -27,7 +27,8 @@ export default {
   post:{
     replyTime:'回复时间',
     postTime:'发布时间',
-    refresh:'刷新成功'
+    refresh:'刷新成功',
+    message:'在此留言吧'
   },
   newPost:{
     header:'发布帖子来表达你技能交换的请愿',
@@ -45,7 +46,8 @@ export default {
     about:'关于'
   },
   user:{
-    logout:'退出登录'
+    logout:'退出登录',
+    timeOutErr:'获取用户信息超时'
   },
   settings:{
     language:'多语言设置',
@@ -55,6 +57,7 @@ export default {
   },
   common:{
     confirm:'确定',
-    cancel:'取消'
+    cancel:'取消',
+    reconnect:'重新连接'
   }
 }

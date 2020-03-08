@@ -27,7 +27,8 @@ export default {
   post:{
     replyTime:'ReplyTime',
     postTime:'PostTime',
-    refresh:'Refreshed successfully'
+    refresh:'Refreshed successfully',
+    message:'Leave your message here'
   },
   newPost:{
     header:'Post to express your request for exchanging skills',
@@ -45,7 +46,8 @@ export default {
     about:'About'
   },
   user:{
-    logout:'LogOut'
+    logout:'LogOut',
+    timeOutErr:'Get userInfo timeout'
   },
   settings:{
     language:'Language',
@@ -55,6 +57,7 @@ export default {
   },
   common:{
     confirm:'Confirm',
-    cancel:'Cancel'
+    cancel:'Cancel',
+    reconnect:'Reconnect'
   }
 }

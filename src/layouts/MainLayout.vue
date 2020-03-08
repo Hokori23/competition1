@@ -1,5 +1,5 @@
 <template>
-  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar mdui-bottom-nav-fixed'>
+  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar' :class="{'mdui-bottom-nav-fixed':$store.state.Display.nav,'commnet-fixed':!$store.state.Display.nav}">
     <Header></Header>
     <Loading></Loading>
 
@@ -20,9 +20,7 @@
 
     <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
 
-      <!-- <keep-alive> -->
       <Fab></Fab>
-      <!-- </keep-alive> -->
     </transition>
   </main>
 </template>
@@ -74,7 +72,6 @@
         }
         //关闭loading组件
         this.$store.commit('Home/changeLoad', false)
-        // this.$store.state.Display.snackBar.close()
       }
     }
   }
@@ -94,5 +91,19 @@
 
   .page {
     width: inherit;
+    min-height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+    position: relative;
+  }
+
+  .footer:after {
+    content: 'Developed By Hokori';
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+    text-align: center;
   }
 </style>

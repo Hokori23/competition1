@@ -2,7 +2,10 @@
   <div class="mdui-fab-wrapper" v-show='this.$store.state.Display.fab' id='fab'>
     <!-- @touchstart.stop='touchstart($event)'
       @touchmove.stop.prevent='touchmove($event)' @touchend.stop='touchend()' @touchcancel.stop='touchcancel()' -->
-    <div class="mdui-fab mdui-color-theme-accent mdui-ripple" @click='click()' @touchstart.stop='drag($event)'><i class="mdui-icon material-icons">add</i></div>
+
+      <!-- bug -->
+    <!-- <div class="mdui-fab mdui-color-theme-accent mdui-ripple" @click='click()' @touchstart.stop='drag($event)'><i class="mdui-icon material-icons">add</i></div> -->
+    <div class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-mini" @click='click()'><i class="mdui-icon material-icons">add</i></div>
   </div>
 </template>
 
@@ -108,7 +111,9 @@
 
 <style>
   .mdui-fab-wrapper {
-    margin-bottom: 62px;
+    /* margin-bottom: 62px; */
+    margin-bottom: 54px;
+    right: 10px;
     z-index: 35;
   }
 

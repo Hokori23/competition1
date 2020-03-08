@@ -30,8 +30,8 @@
         vm.$store.commit('Display/refresh', false)
         vm.$store.commit('Display/nav', false)
 
-        //关闭loading组件
-        // vm.$store.commit('Home/changeLoad', false)
+        // 关闭loading组件
+        vm.$store.commit('Home/changeLoad', false)
       })
     },
   }

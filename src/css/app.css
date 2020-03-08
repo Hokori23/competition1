@@ -32,7 +32,8 @@ html,
   height: 100% !important;
 }
 
-.mdui-snackbar-bottom,.mdui-snackbar-right-bottom {
+.body-nav .mdui-snackbar-bottom,
+.body-nav .mdui-snackbar-right-bottom {
   bottom: 56px !important;
   z-index: 34 !important;
 }
@@ -107,4 +108,20 @@ html,
 .mdui-theme-layout-dark #drawer.mdui-drawer {
   color: #ffffff !important;
   background-color: #212121 !important;
+}
+
+/*****Text Selection*****/
+.post-content {
+  word-break: break-all;
+}
+
+.text {
+  -webkit-overflow-scrolling: touch;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  touch-callout: auto;
+  -webkit-touch-callout: auto;
+  -webkit-user-drag: auto;
 }

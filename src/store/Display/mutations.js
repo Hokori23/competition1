@@ -9,14 +9,16 @@ var refresh = function(state, value) {
 }
 var nav = function(state, value) {
   state.nav = value
-}
-var snackBar = function(state, sn) {
-  state.snackBar = sn;
+  let body = document.getElementsByTagName('body')[0];
+  if (value) {
+    body.classList.add('body-nav')
+  } else {
+    body.classList.remove('body-nav')
+  }
 }
 export {
   fab,
   searchBar,
   refresh,
   nav,
-  snackBar
 }

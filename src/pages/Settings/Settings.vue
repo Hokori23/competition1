@@ -26,7 +26,8 @@
     name: 'settings',
     methods: {
       language() {
-        this.$router.push('/settings/language')
+        // this.$router.push('/settings/language')
+        this.$router.push('/language')
       },
       darkMode() {
         this.checked = !this.checked;
@@ -76,7 +77,7 @@
   .list ul.mdui-list:before,
   .list ul.mdui-list:after {
     position: absolute;
-    top: 8px;
+    top: 0px;
     content: '';
     height: 100%;
     width: 1px;

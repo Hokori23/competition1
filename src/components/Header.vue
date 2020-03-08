@@ -1,15 +1,16 @@
-<template>
-  <header id='header' class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide">
+<template><!-- mdui-appbar-scroll-hide -->
+  <header id='header' class="mdui-appbar mdui-appbar-fixed ">
     <div class="mdui-toolbar mdui-color-theme">
       <!-- menuBtn -->
       <a class="mdui-btn mdui-btn-icon" @click='click()'><i class="mdui-icon material-icons">{{backArrow}}</i></a>
 
       <!-- Title -->
-      <a class="mdui-typo-subheading">{{title}}</a>
+      <a class="mdui-typo-subheading"  :class="{'header-icon':$store.state.Display.refersh,'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{title}}</a>
       <div class="mdui-toolbar-spacer"></div>
 
       <!-- searchBar -->
-      <div class="mdui-textfield mdui-textfield-expandable mdui-float-right mdui-text-color-theme-accent" id='searchBar' v-show='this.$store.state.Display.searchBar'>
+      <div class="mdui-textfield mdui-textfield-expandable mdui-float-right mdui-text-color-theme-accent" id='searchBar'
+        v-show='this.$store.state.Display.searchBar'>
         <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
         <input class="mdui-textfield-input" type="text" placeholder="Search" />
         <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
@@ -34,8 +35,11 @@
         }
       },
       refresh() {
-        if (this.$store.state.title === this.$t('nav.forum')) {
+        let path = this.$router.currentRoute.name
+        if(path === 'Home'){
           this.$store.dispatch('Home/getPost', this)
+        }else if(path === 'Post'){
+          this.$store.dispatch('Home/getSinglePost',this)
         }
       }
     },
@@ -90,8 +94,12 @@
     height: 36px;
   }
 
-  .mdui-typo-subheading {
+  .header-icon.mdui-typo-subheading {
     overflow: visible !important;
     margin: 0 !important;
+  }
+
+  .mdui-typo-subheading {
+    padding-right:16px !important;
   }
 </style>
