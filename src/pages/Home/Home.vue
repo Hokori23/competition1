@@ -1,32 +1,39 @@
 <template>
   <section id='home' class='page footer'>
-    <!-- <div class="mdui-card home--post-item" v-for='item of post'> -->
-    <div class="post--card mdui-ripple" v-for='item of post'>
-      <!-- 卡片头部，包含头像、标题、副标题 -->
-      <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
-        <div class="mdui-card-header-title">{{item.nickName}}</div>
-        <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
-        </div>
-      </div>
+    <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
+      loosing-text=" " loading-text=" " success-text=" ">
 
-      <!-- 卡片的标题 -->
-      <div @click="to(item)">
-        <div class="mdui-card-primary">
-          <div class="mdui-card-primary-title mdui-text-color-theme" :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{item.postTitle}}</div>
+      <div class="post--card mdui-ripple" v-for='item of post'>
+        <!-- 卡片头部，包含头像、标题、副标题 -->
+        <div class="mdui-card-header">
+          <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
+          <div class="mdui-card-header-title">{{item.nickName}}</div>
+          <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
+          </div>
         </div>
 
-        <!-- 卡片的内容 -->
-        <div class="mdui-card-content post-content">{{item.postContent}}</div>
-        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
-          <span>{{$t('post.replyTime')}}: {{item.replyTime}}
-          </span>
-          <span>{{$t('post.postTime')}}: {{item.postTime}}
-          </span>
+        <!-- 卡片的标题 -->
+        <div @click="to(item)">
+          <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title mdui-text-color-theme" :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{item.postTitle}}</div>
+          </div>
+
+          <!-- 卡片的内容 -->
+          <div class="mdui-card-content post-content">{{item.postContent}}</div>
+          <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+            <span>{{$t('post.replyTime')}}: {{item.replyTime}}
+            </span>
+            <span>{{$t('post.postTime')}}: {{item.postTime}}
+            </span>
+          </div>
         </div>
+        <div class='mdui-divider'></div>
       </div>
-      <div class='mdui-divider'></div>
-    </div>
+
+    </van-pull-refresh>
+
+<!--    <van-pagination v-model="currentPage" :total-items="totalPost" :items-per-page="10" class='mdui-text-color-theme'></van-pagination> -->
+    <van-pagination v-model="currentPage" :total-items="totalPost" :show-page-size="5" force-ellipses class='mdui-text-color-theme' v-if="post" />
   </section>
 </template>
 
@@ -39,12 +46,19 @@
         return this.$store.state.Home.post || false
       }
     },
+    data() {
+      return {
+        load: false,
+        currentPage: 1,
+        totalPost: 100,
+      }
+    },
     methods: {
       to(item) {
         //跳转到帖子界面
         this.$router.push(`/post/${item.postID}/${item.postTitle}`);
       },
-      getPost() { //获取总帖子信息
+      refresh() {
         this.$store.dispatch('Home/getPost', this)
       },
       imgErr(e) { //错误图片处理
@@ -61,6 +75,7 @@
         if (vm.$store.state.User.user !== null && vm.$store.state.User.user.login) {
           vm.$store.dispatch('Home/getPost', vm)
         }
+
 
 
         //更新本页滚动位置
@@ -84,28 +99,21 @@
       from.meta.scrollTop = scrollTop;
 
       next()
+    },
+    watch: {
+      currentPage(newValue) {
+        this.refresh();
+        const $content = document.querySelector('html');
+        $content.scrollTop = 0;
+      }
     }
   }
 </script>
 
 <style scoped>
-  /*  .mdui-card:first-child {
-    margin: 0;
-    margin-bottom: 15px;
-  }
-
-  .mdui-card:last-child {
-    margin: 0;
-    margin-top: 15px;
-  } */
   #home {
     box-sizing: border-box;
-    /* padding: 0 1rem; */
   }
-
-  /*  .home--post-item {
-    cursor: pointer;
-  } */
 
   .mdui-card-primary-title {
     font-size: 18px;

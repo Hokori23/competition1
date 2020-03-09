@@ -1,6 +1,6 @@
 <template>
 	<div id='loading' v-show='this.$store.state.Home.load'>
-		<div class="mdui-spinner"></div>
+		<div class="mdui-spinner mdui-text-color-theme-accent"></div>
 	</div>
 </template>
 
@@ -13,7 +13,8 @@
 <style scoped>
 	#loading{
 		position: absolute;
-		margin-top: 7.5px;
+		/* margin-top: calc(56px + 28px + 7.5px); */
+    margin-top: 7.5px;
 		display: flex;
     left: 50%;
     transform: translateX(-50%);

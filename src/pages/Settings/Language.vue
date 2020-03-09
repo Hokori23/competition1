@@ -28,6 +28,15 @@
 </template>
 
 <script>
+  //Vant
+  import {
+    Locale
+  } from 'vant';
+  import enUS from 'vant/lib/locale/lang/en-us';
+  import zhCN from 'vant/lib/locale/lang/zh-CN';
+  
+  
+  
   import mdui from 'mdui'
   export default {
     name: 'Language',
@@ -45,20 +54,32 @@
     methods: {
       language(value) {
         this.lang = value;
+        this.$i18n.locale = this.lang;
       }
     },
     beforeRouteLeave(to, from, next) {
       let oldLang = this.$store.state.Setting.language;
       if (oldLang !== this.lang) {
         this.$store.commit('Setting/changeLanguage', this.lang);
-        mdui.dialog({
-          content: this.$t('settings.reboot'),
-          buttons: [
-            {
-              text: this.$t('common.confirm')
-            },
-          ]
-        });
+        this.$i18n.locale = this.lang;
+
+
+
+        //Vant
+        if (this.lang === 'zh') {
+          Locale.use('zh-cn', zhCN);
+        } else {
+          Locale.use('en-us', enUS);
+        }
+
+        // mdui.dialog({
+        //   content: this.$t('settings.reboot'),
+        //   buttons: [
+        //     {
+        //       text: this.$t('common.confirm')
+        //     },
+        //   ]
+        // });
       }
       next()
     }

@@ -1,11 +1,12 @@
-<template><!-- mdui-appbar-scroll-hide -->
+<template>
+  <!-- mdui-appbar-scroll-hide -->
   <header id='header' class="mdui-appbar mdui-appbar-fixed ">
     <div class="mdui-toolbar mdui-color-theme">
       <!-- menuBtn -->
       <a class="mdui-btn mdui-btn-icon" @click='click()'><i class="mdui-icon material-icons">{{backArrow}}</i></a>
 
       <!-- Title -->
-      <a class="mdui-typo-subheading"  :class="{'header-icon':$store.state.Display.refersh,'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{title}}</a>
+      <a class="mdui-typo-subheading" :class="{'header-icon':$store.state.Display.refersh,'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{title}}</a>
       <div class="mdui-toolbar-spacer"></div>
 
       <!-- searchBar -->
@@ -28,7 +29,9 @@
     methods: {
       click() {
         if (this.backArrow !== 'arrow_back') {
-          let drawer = new mdui.Drawer('#drawer');
+          let drawer = new mdui.Drawer('#drawer', {
+            swipe: true
+          });
           drawer.toggle()
         } else {
           this.$router.go(-1);
@@ -36,10 +39,10 @@
       },
       refresh() {
         let path = this.$router.currentRoute.name
-        if(path === 'Home'){
+        if (path === 'Home') {
           this.$store.dispatch('Home/getPost', this)
-        }else if(path === 'Post'){
-          this.$store.dispatch('Home/getSinglePost',this)
+        } else if (path === 'Post') {
+          this.$store.dispatch('Home/getSinglePost', this)
         }
       }
     },
@@ -100,6 +103,6 @@
   }
 
   .mdui-typo-subheading {
-    padding-right:16px !important;
+    padding-right: 16px !important;
   }
 </style>

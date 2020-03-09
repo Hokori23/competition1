@@ -46,14 +46,15 @@ export default {
     about:'About'
   },
   user:{
+    profile:'Profile',
+    profilePhoto:'Profile Photo',
     logout:'LogOut',
     timeOutErr:'Get userInfo timeout'
   },
   settings:{
     language:'Language',
     theme:'Theme',
-    darkMode:'DarkMode',
-    reboot:'Reboot to apply the settings'
+    darkMode:'DarkMode'
   },
   common:{
     confirm:'Confirm',

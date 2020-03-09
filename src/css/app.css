@@ -79,7 +79,7 @@ html,
 .slide-left-enter-active,
 .slide-left-leave-active {
   will-change: transform;
-  transition: all 200ms;
+  transition: all 150ms;
   position: absolute;
 }
 
@@ -124,4 +124,33 @@ html,
   touch-callout: auto;
   -webkit-touch-callout: auto;
   -webkit-user-drag: auto;
+}
+
+/*********vant***********/
+
+.van-pagination {
+  margin-top: 10px;
+}
+
+.van-pagination__item{
+  transition: background-color .2s;
+}
+.mdui-theme-layout-dark .van-pagination__item {
+  color: #fff !important;
+  background-color: #212121 !important;
+}
+
+.mdui-theme-layout-dark .van-pagination__item:after {
+  border: 0;
+}
+
+
+.mdui-theme-primary-teal .van-pagination__item {
+  color: #009688;
+  background-color: #ffffff;
+}
+.mdui-theme-primary-teal .van-pagination__item--active,
+.mdui-theme-primary-teal .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #009688 !important;
 }

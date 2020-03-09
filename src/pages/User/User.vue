@@ -1,8 +1,12 @@
 <template>
   <section id='user' class='list page'>
     <ul class="mdui-list">
+      <li class="mdui-list-item mdui-ripple" @click='profile()'>
+        <i class="mdui-list-item-icon mdui-icon material-icons">&#xe853;</i>
+        <div class="mdui-list-item-content">{{$t('user.profile')}}</div>
+      </li>
       <li class="mdui-list-item mdui-ripple" @click='logOut()'>
-        <i class="mdui-list-item-icon mdui-icon material-icons">&#xe8e2;</i>
+        <i class="mdui-list-item-icon mdui-icon material-icons">&#xe879;</i>
         <div class="mdui-list-item-content">{{$t('user.logout')}}</div>
       </li>
     </ul>
@@ -10,13 +14,16 @@
 </template>
 
 <script>
-  export default{
-    name:'user',
-    methods:{
-      logOut(){
+  export default {
+    name: 'user',
+    methods: {
+      profile(){
+        this.$router.push('/user/profile')
+      },
+      logOut() {
         let user = null
-        this.$store.commit('User/changeUser',user)
-        this.$router.go('/login')
+        this.$store.commit('User/changeUser', user)
+        this.$router.go(-1)
       }
     },
     beforeRouteEnter(to, from, next) {

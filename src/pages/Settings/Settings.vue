@@ -26,8 +26,7 @@
     name: 'settings',
     methods: {
       language() {
-        // this.$router.push('/settings/language')
-        this.$router.push('/language')
+        this.$router.push('/settings/language')
       },
       darkMode() {
         this.checked = !this.checked;

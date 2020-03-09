@@ -46,14 +46,15 @@ export default {
     about:'关于'
   },
   user:{
+    profile:'个人信息',
+    avatar:'头像',
     logout:'退出登录',
     timeOutErr:'获取用户信息超时'
   },
   settings:{
     language:'多语言设置',
     theme:'主题',
-    darkMode:'夜间模式',
-    reboot:'重启后设置生效'
+    darkMode:'夜间模式'
   },
   common:{
     confirm:'确定',

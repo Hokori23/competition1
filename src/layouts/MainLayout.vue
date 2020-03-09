@@ -4,12 +4,12 @@
     <Loading></Loading>
 
     <section :class="{'loading':this.$store.state.Home.load}" id='page'>
-      <transition :name="transitionName">
+      <transition :name="transitionName" mode="out-in">
         <keep-alive>
           <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
       </transition>
-      <transition :name="transitionName">
+      <transition :name="transitionName" mode="out-in">
         <router-view v-if="!$route.meta.keepAlive"></router-view>
       </transition>
     </section>
@@ -72,6 +72,12 @@
         }
         //关闭loading组件
         this.$store.commit('Home/changeLoad', false)
+
+
+        //检查登陆状态
+        if (this.$store.state.User.user === null || !this.$store.state.User.user.login) {
+          this.$router.replace('/login')
+        }
       }
     }
   }

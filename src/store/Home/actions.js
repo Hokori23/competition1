@@ -9,6 +9,9 @@ var getPost = function({
       methods: 'get',
       url: '/public/post.json',
       timeout: 5000,
+      data:{
+        page:event.currentPage
+      }
     }).then(function(res) {
       event.$store.commit('Home/changePost', res.data);
       // if (event.$store.state.Home.load && event.$route.name === 'Home') {
@@ -28,6 +31,7 @@ var getPost = function({
       }
     }).finally(() => {
       event.$store.commit('Home/changeLoad', false)
+      event.load = false;
     })
   }
 }
@@ -94,7 +98,8 @@ var getSinglePost = function({
         })
       }
     }).finally(() => {
-      event.$store.commit('Home/changeLoad', false)
+      event.$store.commit('Home/changeLoad', false);
+      event.load=false;
     })
   }
 }

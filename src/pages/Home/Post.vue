@@ -1,5 +1,7 @@
 <template>
   <section id='home__post' v-if="post" class='page footer comment-footer'>
+       <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
+      loosing-text=" " loading-text=" " success-text=" ">
     <div class="post--card post--poster">
       <!-- 卡片头部，包含头像、标题、副标题 -->
       <div class="mdui-card-header">
@@ -52,9 +54,12 @@
         </div>
 
         <!-- 卡片的内容 -->
-        <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`"><a href='#' v-if="child.target" class='mdui-text-color-theme-accent' @click.stop.prevent=''>@{{child.target}} : </a>{{child.postContent}}</div>
+        <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`"><a href='#' v-if="child.target"
+            class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+            @click.stop.prevent>@{{child.target}} : </a>{{child.postContent}}</div>
         <!-- 展开评论 -->
-        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}" v-if="child.postContent.length>120">
+        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+          v-if="child.postContent.length>120">
           <span @click.stop.self='commentToggle(`comment-${index1}-${index2}`)' class='mdui-btn mdui-ripple'>{{toggleFold(`comment-${index1}-${index2}`)}}</span>
         </div>
         <div class='card-bottom--blank' v-else></div>
@@ -65,12 +70,13 @@
     </div>
     <div class='post--comment mdui-color-theme-200'>
       <div class="mdui-textfield">
-        <!-- <a class='mdui-btn mdui-btn-icon'> -->
+        <!-- <a class='mdui-btn mdui-btn-icon'> 发送评论按钮-->
         <i class="mdui-icon material-icons mdui-btn-icon mdui-ripple">&#xe163;</i>
         <!-- </a> -->
-        <input id='comment-input' class="mdui-textfield-input" type="text" :placeholder="$t('post.message')" />
+        <input id='comment-input' class="mdui-textfield-input mdui-text-color-theme" type="text" :placeholder="$t('post.message')" />
       </div>
     </div>
+    </van-pull-refresh>
   </section>
 </template>
 
@@ -95,7 +101,7 @@
           return '展开'
         }
       },
-      input(){
+      input() {
         return document.getElementById('comment-input');
       }
     },
@@ -108,16 +114,20 @@
         this.fold = Math.random();
         document.getElementById(target).classList.toggle('content-unfold')
       },
-      commentFocus(){
-        if(arguments.length===1){
-
+      commentFocus() {
+        if (arguments.length === 1) {
+          /*************NOW************/
         }
-        this.input.focus()
+        this.input.focus();
+      },
+      refresh() {
+        this.$store.dispatch('Home/getSinglePost', this)
       }
     },
     data() {
       return {
-        fold: null
+        fold: null,
+        load: false
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -291,10 +301,12 @@
   .post--comment .mdui-textfield-input {
     margin-right: 56px;
   }
-  .card-bottom--blank{
+
+  .card-bottom--blank {
     padding: 5px 0;
   }
-  a{
+
+  a {
     text-decoration: none;
   }
 </style>
