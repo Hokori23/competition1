@@ -48,6 +48,8 @@ export default {
   user:{
     profile:'Profile',
     profilePhoto:'Profile Photo',
+    editName:'Edit Name',
+    name:'Name',
     logout:'LogOut',
     timeOutErr:'Get userInfo timeout'
   },

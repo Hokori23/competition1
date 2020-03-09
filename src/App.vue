@@ -21,6 +21,19 @@
 
 
 
+        //初始化主题-----------------------
+        let body = document.getElementsByTagName('body')[0];
+        body.classList.add('mdui-theme-accent-teal');
+        body.classList.add('mdui-theme-primary-teal') ;
+        // if (darkMode == null || darkMode.length === 0) { //第一次初始化
+        //   localStorage.setItem('darkMode', 0)
+        //   darkMode = localStorage.getItem('darkMode');
+        // }
+        // this.$store.commit('Setting/changeDarkMode', Number(darkMode))
+        //-----------------------------------
+
+
+
         //初始化夜间模式-----------------------
         let darkMode = localStorage.getItem('darkMode');
         if (darkMode == null || darkMode.length === 0) { //第一次初始化

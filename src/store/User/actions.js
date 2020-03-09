@@ -76,7 +76,44 @@ var getUser = function({
     event.$store.commit('User/changeLoad', false)
   })
 }
+
+
+//更改用户信息
+var changeUser = function({
+  commit,
+  state
+}, event) {
+  //开启提交状态
+  commit('changeLoad', true);
+  event.$axios({
+    methods: 'get',
+    url: '/public/user.json',
+    data: {
+      nickName:event.nickName
+      //多层验证增加安全性
+      //password:event.user.password
+    },
+    timeout: 5000,
+  }).then(function(res) {
+    event.$store.commit('User/changeUser', Object.assign(res.data.user, event.$store.state.User.user))
+  }).catch(function(err) {
+    mdui.snackbar({
+      message: `${event.$t('user.timeOutErr')}`,
+      buttonText: event.$t('common.reconnect'),
+      timeout: 0,
+      onButtonClick: function() {
+        this.close;
+        event.$store.dispatch('User/changeUser', event);
+      },
+      closeOnOutsideClick: false,
+    })
+  }).finally(() => {
+    //关闭提交状态
+    event.$store.commit('User/changeLoad', false)
+  })
+}
 export {
   login,
-  getUser
+  getUser,
+  changeUser
 }

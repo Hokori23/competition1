@@ -47,7 +47,9 @@ export default {
   },
   user:{
     profile:'个人信息',
-    avatar:'头像',
+    profilePhoto:'头像',
+    name:'昵称',
+    editName:'更改昵称',
     logout:'退出登录',
     timeOutErr:'获取用户信息超时'
   },

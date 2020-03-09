@@ -1,5 +1,5 @@
 <template>
-  <main id='mainLayout' class='mdui-theme-accent-teal mdui-theme-primary-teal mdui-appbar-with-toolbar' :class="{'mdui-bottom-nav-fixed':$store.state.Display.nav,'commnet-fixed':!$store.state.Display.nav}">
+  <main id='mainLayout' class='mdui-appbar-with-toolbar' :class="{'mdui-bottom-nav-fixed':$store.state.Display.nav,'commnet-fixed':!$store.state.Display.nav}">
     <Header></Header>
     <Loading></Loading>
 

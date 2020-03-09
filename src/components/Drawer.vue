@@ -2,7 +2,7 @@
   <aside class="mdui-drawer mdui-drawer-close mdui-color-theme-50" id='drawer'>
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
-      <li class="mdui-list-item" mdui-drawer-close @click='profile()'>
+      <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click='profile()'>
         <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="imgErr($event)" /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>

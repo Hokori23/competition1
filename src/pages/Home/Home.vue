@@ -17,7 +17,6 @@
           <div class="mdui-card-primary">
             <div class="mdui-card-primary-title mdui-text-color-theme" :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{item.postTitle}}</div>
           </div>
-
           <!-- 卡片的内容 -->
           <div class="mdui-card-content post-content">{{item.postContent}}</div>
           <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
