@@ -9,11 +9,12 @@ var changeThemeColor = function(state, value) {
   state.themeColor = value
   localStorage.setItem('themeColor', value)
 
-  window.onload = function() {
-    let temp = document.getElementsByClassName('mdui-toolbar')[0]|| document.getElementById('login--btn').children[0];
-    document.getElementsByTagName('meta')['theme-color'].content = getComputedStyle(temp).backgroundColor;
-    temp = null;
-  }
+  try {
+    let temp = document.getElementsByClassName('mdui-toolbar')[0] || document.getElementById('login--btn').children[0];
+    if (temp) {
+      document.getElementsByTagName('meta')['theme-color'].content = getComputedStyle(temp).backgroundColor;
+    }
+  } catch (e) {}
 }
 var changeAccentColor = function(state, value) {
   let body = document.getElementsByTagName('body')[0];
@@ -28,8 +29,17 @@ var changeDarkMode = function(state, value) {
   let body = document.getElementsByTagName('body')[0];
   if (value == 1) {
     body.classList.add('mdui-theme-layout-dark')
+    document.getElementsByTagName('meta')['theme-color'].content = '#212121';
   } else {
-    body.classList.remove('mdui-theme-layout-dark')
+    body.classList.remove('mdui-theme-layout-dark');
+
+    try {
+      let temp = document.getElementsByClassName('mdui-toolbar')[0] || document.getElementById('login--btn').children[
+        0];
+      if (temp) {
+        document.getElementsByTagName('meta')['theme-color'].content = getComputedStyle(temp).backgroundColor;
+      }
+    } catch (e) {}
   }
 }
 export {
