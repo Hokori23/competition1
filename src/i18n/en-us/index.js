@@ -51,6 +51,7 @@ export default {
     editName:'Edit Name',
     name:'Name',
     logout:'Log Out',
+    logoutText:'Confirm exit?',
     timeOutErr:'Get userInfo timeout'
   },
   settings:{

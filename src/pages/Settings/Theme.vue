@@ -1,11 +1,13 @@
 <template>
   <section id='setting--theme' class='list page'>
-    <li class="mdui-list-item mdui-ripple" @click='themeColor()'>
-      <div class="mdui-list-item-content">{{$t('settings.themeColor')}}</div>
-    </li>
-    <li class="mdui-list-item mdui-ripple" @click='accentColor()'>
-      <div class="mdui-list-item-content">{{$t('settings.accentColor')}}</div>
-    </li>
+    <ul class="mdui-list">
+      <li class="mdui-list-item mdui-ripple" @click='themeColor()'>
+        <div class="mdui-list-item-content">{{$t('settings.themeColor')}}</div>
+      </li>
+      <li class="mdui-list-item mdui-ripple" @click='accentColor()'>
+        <div class="mdui-list-item-content">{{$t('settings.accentColor')}}</div>
+      </li>
+    </ul>
   </section>
 </template>
 

@@ -51,6 +51,7 @@ export default {
     name:'昵称',
     editName:'更改昵称',
     logout:'退出登录',
+    logoutText:'确定登出吗？',
     timeOutErr:'获取用户信息超时'
   },
   settings:{

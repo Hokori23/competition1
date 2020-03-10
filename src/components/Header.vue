@@ -60,6 +60,11 @@
     },
     mounted() {
       mdui.mutation()
+      if (this.$router.currentRoute.meta.index > 0) {
+        this.$store.commit('changeIcon', 'arrow_back')
+      } else {
+        this.$store.commit('changeIcon', 'menu')
+      }
     },
     watch: {
       $route: {

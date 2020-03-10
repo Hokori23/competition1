@@ -54,13 +54,6 @@ const routes = [{
         },
         component: () => import('pages/User/User.vue')
       },
-      {
-        path: 'user/profile',
-        meta: {
-          index: 1000
-        },
-        component: () => import('pages/User/Profile.vue')
-      },
       //Setting
       {
         path: 'settings',
