@@ -25,8 +25,8 @@ export default {
     settings:'Settings',
   },
   post:{
-    replyTime:'ReplyTime',
-    postTime:'PostTime',
+    replyTime:'Reply Time',
+    postTime:'Post Time',
     refresh:'Refreshed successfully',
     message:'Leave your message here'
   },
@@ -50,13 +50,39 @@ export default {
     profilePhoto:'Profile Photo',
     editName:'Edit Name',
     name:'Name',
-    logout:'LogOut',
+    logout:'Log Out',
     timeOutErr:'Get userInfo timeout'
   },
   settings:{
     language:'Language',
     theme:'Theme',
-    darkMode:'DarkMode'
+    darkMode:'Dark Mode',
+    themeColor:'Theme Color',
+    accentColor:'Accent Color',
+
+
+    red:'Red',
+    pink:'Pink',
+    purple:'Purple',
+    deepPurple:'Deep purple',
+    indigo:'Indigo',
+    blue:'Blue',
+    lightBlue:'Light Blue',
+    cyan:'Cyan',
+    teal:'Teal',
+    green:'Green',
+    lightGreen:'Light Green',
+    lime:'Lime',
+    yellow:'Yellow',
+    amber:'Amber',
+    orange:'Orange',
+    deepOrange:'Deep Orange',
+    brown:'Brown',
+    grey:'Grey',
+    blueGrey:'Blue Grey',
+
+
+
   },
   common:{
     confirm:'Confirm',

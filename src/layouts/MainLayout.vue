@@ -1,5 +1,5 @@
 <template>
-  <main id='mainLayout' class='mdui-appbar-with-toolbar' :class="{'mdui-bottom-nav-fixed':$store.state.Display.nav,'commnet-fixed':!$store.state.Display.nav}">
+  <main id='mainLayout' class='mdui-appbar-with-toolbar' :class="{'mdui-bottom-nav-fixed':$store.state.Display.nav,'comment-fixed':!$store.state.Display.nav}">
     <Header></Header>
     <Loading></Loading>
 
@@ -97,7 +97,8 @@
 
   .page {
     width: inherit;
-    min-height: 100%;
+    /* min-height: 100%; */
+    min-height: calc(100vh - 56px);
     box-sizing: border-box;
     padding-bottom: 60px;
     position: relative;

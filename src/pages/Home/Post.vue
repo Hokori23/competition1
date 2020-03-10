@@ -77,6 +77,8 @@
       </div>
     </div>
     </van-pull-refresh>
+
+        <van-pagination v-model="currentPage" :total-items="totalReply" :show-page-size="5" force-ellipses class='mdui-text-color-theme' v-if="post" />
   </section>
 </template>
 
@@ -127,7 +129,9 @@
     data() {
       return {
         fold: null,
-        load: false
+        load: false,
+        currentPage:1,
+        totalReply:100,
       }
     },
     beforeRouteEnter(to, from, next) {

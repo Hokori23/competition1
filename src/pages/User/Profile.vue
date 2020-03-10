@@ -1,14 +1,21 @@
 <template>
   <section id='profile' class='list page'>
-    <ul class="mdui-list">
+    <a v-if="editAvatar" class="mdui-btn mdui-btn-icon save-btn" @click='crop'>
+      <i class="mdui-icon material-icons">&#xe161;</i>
+    </a>
+    <div v-if="editAvatar" class='avatar--cropper'>
 
-      <van-uploader class='mdui-ripple' :after-read="afterRead" accept="image/*">
+
+      <vueCropper ref="cropper" :img="avatar" :outputSize="1" :info="false" :canScale="true" :autoCrop="true" :fixed="true"
+        :centerBox="true"></vueCropper>
+    </div>
+    <ul class="mdui-list">
+      <van-uploader class='mdui-ripple' :after-read="afterRead" accept="image/jpg,image/jpeg,image/png">
         <li class="mdui-list-item mdui-ripple" type="primary">
           <div class="mdui-list-item-content">{{$t('user.profilePhoto')}}</div>
           <div class="mdui-list-item-avatar"><img :src="tempUser.avatarURL" @error="imgErr($event)" /></div>
         </li>
       </van-uploader>
-
       <li class="mdui-list-item mdui-ripple" mdui-dialog="{target:'#profile-dialog'}">
         <div class="mdui-list-item-content">{{$t('user.name')}}</div>
         <div class="mdui-list-item-content mdui-text-color-theme list-item--right" :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{tempUser.nickName}}</div>
@@ -18,7 +25,7 @@
       <div class="mdui-dialog-content">
         <div class="mdui-textfield">
           <label class="mdui-textfield-label">{{$t('user.editName')}}</label>
-          <input class="mdui-textfield-input" type="text" v-model="user.nickName" id="profile-dialog--input">
+          <input class="mdui-textfield-input" type="text" :value="user.nickName" id="profile-dialog--input">
         </div>
       </div>
       <div class="mdui-dialog-actions">
@@ -30,12 +37,28 @@
 </template>
 
 <script>
+  import {
+    VueCropper
+  } from 'vue-cropper'
   import mdui from 'mdui'
   export default {
     name: 'profile',
+    components: {
+      VueCropper,
+    },
     methods: {
       afterRead(file) {
-        console.log(file)
+        this.avatar = file.content;
+        this.$store.commit('Display/editAvatar', true);
+      },
+      crop() {
+        this.$refs.cropper.startCrop() //截图
+        // 获取截图的base64 数据
+        this.$refs.cropper.getCropData((data) => {
+          this.user.avatarURL = data;
+          this.$store.commit('Display/editAvatar', false);
+        })
+        //上传用户信息
       },
       imgErr(e) {
         e.target.src = './statics/icons/avatar-fill.png';
@@ -46,10 +69,15 @@
       tempUser() {
         return this.$store.state.User.user || {}
       },
+      editAvatar() {
+        return this.$store.state.Display.editAvatar
+      },
     },
     data() {
       return {
         user: {},
+        avatar: null,
+        init: false
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -66,18 +94,32 @@
         //初始化用户信息
         let temp = Object.assign({}, vm.$store.state.User.user);
         vm.user = temp;
-
-
-        //解构
-        // let {nickName,account} = vm.user;
-        //  console.log(nickName)
-        //  console.log(account)
       })
     },
     mounted() {
+      let vm = this;
       document.getElementById('profile-dialog').addEventListener('open.mdui.dialog', function() {
-        document.getElementById('profile-dialog--input').focus();
+        let input = document.getElementById('profile-dialog--input');
+        input.focus();
+        input.value = vm.user.nickName;
       })
+
+      document.getElementById('profile-dialog').addEventListener('confirm.mdui.dialog', function() {
+        let input = document.getElementById('profile-dialog--input');
+        vm.user.nickName = input.value;
+      })
+    },
+    watch: {
+      user: {
+        handler() {
+          if (this.init) {
+            this.$store.dispatch('User/changeUser', this);
+          } else {
+            this.init = true;
+          }
+        },
+        deep: true
+      }
     }
   }
 </script>
@@ -92,5 +134,31 @@
   .list-item--right {
     flex-grow: 0;
     font-weight: 500;
+  }
+
+  .avatar--cropper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    height: calc(100vh - 56px) !important;
+  }
+
+  .save-btn {
+    position: absolute;
+    right: 0;
+    top: -56px;
+    z-index: 1001 !important;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    margin: 4px;
+  }
+
+  @media (min-width: 600px) {
+    .save-btn {
+      top: -64px;
+      margin: 8px;
+    }
   }
 </style>

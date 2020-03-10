@@ -56,7 +56,30 @@ export default {
   settings:{
     language:'多语言设置',
     theme:'主题',
-    darkMode:'夜间模式'
+    darkMode:'夜间模式',
+    themeColor:'主题色',
+    accentColor:'强调色',
+
+    red:'红色',
+    pink:'粉色',
+    purple:'紫色',
+    deepPurple:'深紫色',
+    indigo:'靛蓝色',
+    blue:'蓝色',
+    lightBlue:'天蓝色',
+    cyan:'青色',
+    teal:'蓝绿色',
+    green:'绿色',
+    lightGreen:'浅绿色',
+    lime:'石灰绿',
+    yellow:'黄色',
+    amber:'琥珀色',
+    orange:'橙色',
+    deepOrange:'桔黄色',
+    brown:'棕色',
+    grey:'灰色',
+    blueGrey:'蓝灰色'
+
   },
   common:{
     confirm:'确定',

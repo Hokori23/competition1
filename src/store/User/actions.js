@@ -59,7 +59,7 @@ var getUser = function({
     },
     timeout: 5000,
   }).then(function(res) {
-    event.$store.commit('User/changeUser', Object.assign(res.data.user, event.$store.state.User.user))
+    event.$store.commit('User/changeUser', Object.assign({}, event.$store.state.User.user, res.data.user))
   }).catch(function(err) {
     mdui.snackbar({
       message: `${event.$t('user.timeOutErr')}`,
@@ -89,23 +89,24 @@ var changeUser = function({
     methods: 'get',
     url: '/public/user.json',
     data: {
-      nickName:event.nickName
+      nickName: event.user.nickName,
+      avatarURL: event.user.avatarURL
       //多层验证增加安全性
       //password:event.user.password
     },
     timeout: 5000,
   }).then(function(res) {
-    event.$store.commit('User/changeUser', Object.assign(res.data.user, event.$store.state.User.user))
+    event.$store.commit('User/changeUser', Object.assign({}, event.$store.state.User.user, res.data.user))
   }).catch(function(err) {
     mdui.snackbar({
-      message: `${event.$t('user.timeOutErr')}`,
+      message: event.$t('user.timeOutErr'),
       buttonText: event.$t('common.reconnect'),
       timeout: 0,
-      onButtonClick: function() {
-        this.close;
-        event.$store.dispatch('User/changeUser', event);
-      },
-      closeOnOutsideClick: false,
+      // onButtonClick: function() {
+      //   this.close;
+      //   event.$store.dispatch('User/changeUser', event);
+      // },
+      // closeOnOutsideClick: false,
     })
   }).finally(() => {
     //关闭提交状态

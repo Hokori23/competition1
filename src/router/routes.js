@@ -4,7 +4,7 @@ const routes = [{
     component: () => import('layouts/MainLayout.vue'),
     children: [{
         path: '',
-        name:'Home',
+        name: 'Home',
         meta: {
           index: 0,
           keepAlive: true,
@@ -13,7 +13,7 @@ const routes = [{
         component: () => import('pages/Home/Home.vue'),
       }, {
         path: 'newpost',
-        name:'NewPost',
+        name: 'NewPost',
         meta: {
           index: 1,
           keepAlive: true,
@@ -21,7 +21,7 @@ const routes = [{
         component: () => import('pages/Home/NewPost.vue'),
       }, {
         path: 'post/:postID/:postTitle',
-        name:'Post',
+        name: 'Post',
         meta: {
           index: 2,
           keepAlive: true,
@@ -55,11 +55,11 @@ const routes = [{
         component: () => import('pages/User/User.vue')
       },
       {
-        path:'user/profile',
-        meta:{
-          index:1000
+        path: 'user/profile',
+        meta: {
+          index: 1000
         },
-        component:()=>import('pages/User/Profile.vue')
+        component: () => import('pages/User/Profile.vue')
       },
       //Setting
       {
@@ -74,6 +74,24 @@ const routes = [{
           index: 1000
         },
         component: () => import('pages/Settings/Language.vue')
+      }, {
+        path: 'settings/theme',
+        meta: {
+          index: 1000
+        },
+        component: () => import('pages/Settings/Theme.vue')
+      } ,{
+        path: 'settings/theme/themecolor',
+        meta: {
+          index: 1001
+        },
+        component: () => import('pages/Settings/ThemeColor.vue')
+      },{
+        path: 'settings/theme/accentcolor',
+        meta: {
+          index: 1001
+        },
+        component: () => import('pages/Settings/AccentColor.vue')
       }
     ]
   },

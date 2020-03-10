@@ -5,7 +5,7 @@
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe8e2;</i>
         <div class="mdui-list-item-content">{{$t('settings.language')}}</div>
       </li>
-      <li class="mdui-list-item mdui-ripple">
+      <li class="mdui-list-item mdui-ripple" @click='theme()'>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe40a;</i>
         <div class="mdui-list-item-content">{{$t('settings.theme')}}</div>
       </li>
@@ -27,6 +27,9 @@
     methods: {
       language() {
         this.$router.push('/settings/language')
+      },
+      theme() {
+        this.$router.push('/settings/theme')
       },
       darkMode() {
         this.checked = !this.checked;

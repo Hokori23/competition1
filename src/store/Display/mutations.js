@@ -16,9 +16,13 @@ var nav = function(state, value) {
     body.classList.remove('body-nav')
   }
 }
+var editAvatar = function(state, value) {
+  state.editAvatar = value
+}
 export {
   fab,
   searchBar,
   refresh,
   nav,
+  editAvatar
 }

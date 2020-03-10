@@ -31,7 +31,6 @@
 
     </van-pull-refresh>
 
-<!--    <van-pagination v-model="currentPage" :total-items="totalPost" :items-per-page="10" class='mdui-text-color-theme'></van-pagination> -->
     <van-pagination v-model="currentPage" :total-items="totalPost" :show-page-size="5" force-ellipses class='mdui-text-color-theme' v-if="post" />
   </section>
 </template>

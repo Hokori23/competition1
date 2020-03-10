@@ -5,5 +5,6 @@ export default function() {
     refresh:true,
     nav:true,
     snackBar:null,
+    editAvatar:false,
   }
 }

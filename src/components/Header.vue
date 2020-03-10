@@ -34,6 +34,10 @@
           });
           drawer.toggle()
         } else {
+          if (this.$store.state.Display.editAvatar) {
+            this.$store.commit('Display/editAvatar', false);
+            return;
+          }
           this.$router.go(-1);
         }
       },

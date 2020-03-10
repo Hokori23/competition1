@@ -1,5 +1,5 @@
 <template>
-  <div id="q-app" >
+  <div id="q-app">
     <router-view />
   </div>
 </template>
@@ -21,15 +21,25 @@
 
 
 
-        //初始化主题-----------------------
+        //初始化主题色-----------------------
         let body = document.getElementsByTagName('body')[0];
-        body.classList.add('mdui-theme-accent-teal');
-        body.classList.add('mdui-theme-primary-teal') ;
-        // if (darkMode == null || darkMode.length === 0) { //第一次初始化
-        //   localStorage.setItem('darkMode', 0)
-        //   darkMode = localStorage.getItem('darkMode');
-        // }
-        // this.$store.commit('Setting/changeDarkMode', Number(darkMode))
+
+        let themeColor = localStorage.getItem('themeColor');
+        let accentColor = localStorage.getItem('accentColor');
+        if (themeColor == null || themeColor.length === 0) { //第一次初始化
+          localStorage.setItem('themeColor', 'teal')
+          themeColor = localStorage.getItem('themeColor');
+        }
+        if (accentColor == null || accentColor.length === 0) { //第一次初始化
+          localStorage.setItem('accentColor', 'teal')
+          accentColor = localStorage.getItem('accentColor');
+        }
+
+          body.classList.add(`mdui-theme-primary-${themeColor}`);
+          body.classList.add(`mdui-theme-accent-${accentColor}`);
+
+        this.$store.commit('Setting/changeThemeColor', themeColor)
+        this.$store.commit('Setting/changeAccentColor', accentColor)
         //-----------------------------------
 
 

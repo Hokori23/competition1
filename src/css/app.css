@@ -5,7 +5,8 @@ main {
 }
 
 body,
-body a {
+body a,
+body img {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   -webkit-user-select: none;
@@ -40,19 +41,20 @@ html,
 
 
 /****************btn****************/
-.mdui-btn:hover {
+.mdui-btn:hover,.save-btn:hover {
   background-color: unset !important;
 }
 
-.mdui-toolbar[class*=mdui-color-]:not(.mdui-color-transparent) .mdui-btn:active {
-  background-color: rgba(255, 255, 255, .165) !important;
-}
 
 .mdui-btn:not(.mdui-ripple):active,
 .mdui-fab:not(.mdui-ripple):active {
   background-color: rgba(0, 0, 0, .165) !important;
 }
 
+.mdui-toolbar[class*=mdui-color-]:not(.mdui-color-transparent) .mdui-btn:active,
+.save-btn.mdui-btn:active{
+  background-color: rgba(255, 255, 255, .165) !important;
+}
 /****************list-item****************/
 .mdui-list-item:before {
   position: absolute;
@@ -128,13 +130,14 @@ html,
 
 /*********vant***********/
 
-.van-pagination {
+/* .van-pagination {
   margin-top: 10px;
-}
+} */
 
-.van-pagination__item{
+.van-pagination__item {
   transition: background-color .2s;
 }
+
 .mdui-theme-layout-dark .van-pagination__item {
   color: #fff !important;
   background-color: #212121 !important;
@@ -145,12 +148,211 @@ html,
 }
 
 
+.mdui-theme-primary-red .van-pagination__item {
+  color: #f44336;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-red .van-pagination__item--active,
+.mdui-theme-primary-red .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #f44336 !important;
+}
+
+.mdui-theme-primary-pink .van-pagination__item {
+  color: #e91e63;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-pink .van-pagination__item--active,
+.mdui-theme-primary-pink .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #e91e63 !important;
+}
+
+.mdui-theme-primary-purple .van-pagination__item {
+  color: #9c27b0;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-purple .van-pagination__item--active,
+.mdui-theme-primary-purple .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #9c27b0 !important;
+}
+
+.mdui-theme-primary-deep-purple .van-pagination__item {
+  color: #673ab7;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-deep-purple .van-pagination__item--active,
+.mdui-theme-primary-deep-purple .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #673ab7 !important;
+}
+
+.mdui-theme-primary-indigo .van-pagination__item {
+  color: #3f51b5;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-indigo .van-pagination__item--active,
+.mdui-theme-primary-indigo .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #3f51b5 !important;
+}
+
+.mdui-theme-primary-blue .van-pagination__item {
+  color: #2196f3;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-blue .van-pagination__item--active,
+.mdui-theme-primary-blue .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #2196f3 !important;
+}
+
+.mdui-theme-primary-light-blue .van-pagination__item {
+  color: #03a9f4;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-light-blue .van-pagination__item--active,
+.mdui-theme-primary-light-blue .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #03a9f4 !important;
+}
+
+.mdui-theme-primary-cyan .van-pagination__item {
+  color: #00bcd4;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-cyan .van-pagination__item--active,
+.mdui-theme-primary-cyan .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #00bcd4 !important;
+}
+
 .mdui-theme-primary-teal .van-pagination__item {
   color: #009688;
   background-color: #ffffff;
 }
+
 .mdui-theme-primary-teal .van-pagination__item--active,
 .mdui-theme-primary-teal .van-pagination__item:active {
   color: #ffffff !important;
   background-color: #009688 !important;
+}
+
+.mdui-theme-primary-green .van-pagination__item {
+  color: #4caf50;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-green .van-pagination__item--active,
+.mdui-theme-primary-green .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #4caf50 !important;
+}
+
+.mdui-theme-primary-light-green .van-pagination__item {
+  color: #8bc34a;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-light-green .van-pagination__item--active,
+.mdui-theme-primary-light-green .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #8bc34a !important;
+}
+
+.mdui-theme-primary-lime .van-pagination__item {
+  color: #cddc39;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-lime .van-pagination__item--active,
+.mdui-theme-primary-lime .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #cddc39 !important;
+}
+
+.mdui-theme-primary-yellow .van-pagination__item {
+  color: #ffeb3b;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-yellow .van-pagination__item--active,
+.mdui-theme-primary-yellow .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #ffeb3b !important;
+}
+
+.mdui-theme-primary-amber .van-pagination__item {
+  color: #ffc107;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-amber .van-pagination__item--active,
+.mdui-theme-primary-amber .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #ffc107 !important;
+}
+
+.mdui-theme-primary-orange .van-pagination__item {
+  color: #ff9800;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-orange .van-pagination__item--active,
+.mdui-theme-primary-orange .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #ff9800 !important;
+}
+
+.mdui-theme-primary-deep-orange .van-pagination__item {
+  color: #ff5722;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-deep-orange .van-pagination__item--active,
+.mdui-theme-primary-deep-orange .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #ff5722 !important;
+}
+
+.mdui-theme-primary-brown .van-pagination__item {
+  color: #795548;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-brown .van-pagination__item--active,
+.mdui-theme-primary-brown .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #795548 !important;
+}
+
+.mdui-theme-primary-grey .van-pagination__item {
+  color: #9e9e9e;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-grey .van-pagination__item--active,
+.mdui-theme-primary-grey .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #9e9e9e !important;
+}
+
+.mdui-theme-primary-blue-grey .van-pagination__item {
+  color: #607d8b;
+  background-color: #ffffff;
+}
+
+.mdui-theme-primary-blue-grey .van-pagination__item--active,
+.mdui-theme-primary-blue-grey .van-pagination__item:active {
+  color: #ffffff !important;
+  background-color: #607d8b !important;
 }
