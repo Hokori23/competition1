@@ -1,6 +1,6 @@
 <template>
   <!-- mdui-appbar-scroll-hide -->
-  <header id='header' class="mdui-appbar mdui-appbar-fixed ">
+  <header id='header' class="mdui-appbar mdui-appbar-fixed">
     <div class="mdui-toolbar mdui-color-theme">
       <!-- menuBtn -->
       <a class="mdui-btn mdui-btn-icon" @click='click()'><i class="mdui-icon material-icons">{{backArrow}}</i></a>
@@ -48,6 +48,9 @@
         } else if (path === 'Post') {
           this.$store.dispatch('Home/getSinglePost', this)
         }
+
+        const $content = document.querySelector('html');
+        $content.scrollTop = 0;
       }
     },
     computed: {

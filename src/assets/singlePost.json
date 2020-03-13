@@ -24,17 +24,17 @@
       "majority": "软件工程",
       "grade": "2018",
       "poster": false,
-      "target":null,
+      "target": null,
       "postContent": "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
       "replyTime": "20:51"
-    },{
+    }, {
       "nickName": "Test2",
       "avatarURL": "https://hokori.online/public/avatar.jpg",
       "school": "华信软件学院",
       "majority": "软件工程",
       "grade": "2018",
       "poster": false,
-      "target":"Test1",
+      "target": "Test1",
       "postContent": "这是一条回复Test1的信息",
       "replyTime": "20:51"
     }]
@@ -63,7 +63,7 @@
       "majority": "软件工程",
       "grade": "2018",
       "poster": false,
-      "target":null,
+      "target": null,
       "postContent": "TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
       "replyTime": "20:51"
     }]

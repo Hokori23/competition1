@@ -9,11 +9,11 @@ var getPost = function({
       methods: 'get',
       url: '/public/post.json',
       timeout: 5000,
-      data:{
-        page:event.currentPage
+      data: {
+        page: event.currentPage
       }
     }).then(function(res) {
-      event.$store.commit('Home/changePost', res.data);
+      event.$store.commit('Home/changePost', res.data.data.post);
       // if (event.$store.state.Home.load && event.$route.name === 'Home') {
       //   mdui.snackbar({
       //     message: event.$t('post.refresh'),
@@ -22,6 +22,7 @@ var getPost = function({
       //   })
       // }
     }).catch(function(err) {
+      console.log(err)
       if (event.$store.state.Home.load && event.$route.name === 'Home') {
         mdui.snackbar({
           message: err,
@@ -77,7 +78,8 @@ var getSinglePost = function({
       methods: 'get',
       url: '/public/singlePost.json',
       data: {
-        id: event.$route.params.postID
+        id: event.$route.params.postID,
+        page: event.currentPage
       },
       timeout: 5000,
     }).then(function(res) {
@@ -99,7 +101,7 @@ var getSinglePost = function({
       }
     }).finally(() => {
       event.$store.commit('Home/changeLoad', false);
-      event.load=false;
+      event.load = false;
     })
   }
 }

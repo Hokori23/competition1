@@ -73,6 +73,7 @@
         mdui.confirm(this.$t('user.logoutText'), function() {
           let user = null
           vm.$store.commit('User/changeUser', user)
+          localStorage.removeItem('Authorization');
           vm.$router.go(-1)
         }, () => {}, {
           confirmText: this.$t('common.confirm'),
@@ -127,13 +128,12 @@
     watch: {
       user: {
         handler() {
-          if (this.init) {
-            if (this.user) {
-              console.log('dispatch')
+          if (this.user.nickName) {
+            if (this.init) {
               this.$store.dispatch('User/changeUser', this);
+            } else {
+              this.init = true;
             }
-          } else {
-            this.init = true;
           }
         },
         deep: true

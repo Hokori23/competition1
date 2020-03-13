@@ -3,7 +3,7 @@
     <!--avatar-->
     <ul class="mdui-list" id='avatar'>
       <li class="mdui-list-item mdui-ripple" mdui-drawer-close @click.stop='userCenter'>
-        <div class="mdui-list-item-avatar"><img :src="user.avatarURL" @error="imgErr($event)" /></div>
+        <div class="mdui-list-item-avatar"><img v-real-img="user.avatarURL" src='../statics/icons/avatar-fill.png' /></div>
         <div class="mdui-list-item-content">{{user.nickName}}</div>
       </li>
     </ul>
@@ -21,7 +21,9 @@
       </li>
       <li class="mdui-list-item mdui-ripple" mdui-drawer-close>
         <i class="mdui-list-item-icon mdui-icon material-icons">&#xe85a;</i>
-        <div class="mdui-list-item-content">{{$t('drawer.reply')}}</div>
+        <div class="mdui-list-item-content">{{$t('drawer.notification')}}</div>
+
+        <q-badge color="red" label="2" />
       </li>
       <!-- divider -->
       <div class="mdui-divider"></div>
@@ -39,6 +41,7 @@
 </template>
 
 <script>
+  import mdui from 'mdui'
   export default {
     name: 'Drawer',
     computed: {
@@ -57,10 +60,11 @@
           this.$router.push('/settings')
         }
       },
-      imgErr(e) {
-        e.target.src = './statics/icons/avatar-fill.png';
-        e.onerror = null;
-      }
+    },
+    mounted() {
+      let drawer = new mdui.Drawer('#drawer', {
+        swipe: true
+      });
     }
   }
 </script>

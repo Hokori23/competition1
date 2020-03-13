@@ -8,6 +8,7 @@
       "layouts/*": ["src/layouts/*"],
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
+      "statics/*":["src/statics/*"],
       "boot/*": ["src/boot/*"],
       "vue$": ["node_modules/vue/dist/vue.esm.js"]
     }

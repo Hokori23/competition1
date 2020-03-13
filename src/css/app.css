@@ -138,9 +138,9 @@ html,
 
 /*********vant***********/
 
-/* .van-pagination {
+.van-pagination {
   margin-top: 10px;
-} */
+}
 
 .van-pagination__item {
   transition: background-color .2s;
@@ -365,38 +365,41 @@ html,
   background-color: #607d8b !important;
 }
 
-  .list,.list ul,.list ul li{
-    width: inherit;
-  }
-  .list .mdui-typo-subheading {
-    overflow: visible !important;
-    margin: 0 !important;
-  }
+.list,
+.list ul,
+.list ul li {
+  width: inherit;
+}
 
-  .list ul.mdui-list {
-    margin: 0 auto;
-    max-width: 500px;
-    position: relative;
-    /* border-bottom: 1px solid rgba(0, 0, 0, .085); */
-  }
+.list .mdui-typo-subheading {
+  overflow: visible !important;
+  margin: 0 !important;
+}
 
-  .list ul.mdui-list:before,
-  .list ul.mdui-list:after {
-    position: absolute;
-    top: 0px;
-    content: '';
-    height: 100%;
-    width: 1px;
-  }
+.list ul.mdui-list {
+  margin: 0 auto;
+  max-width: 500px;
+  position: relative;
+  /* border-bottom: 1px solid rgba(0, 0, 0, .085); */
+}
 
-  .list ul.mdui-list:before {
-    border-left: 1px solid rgba(0, 0, 0, .12);
-    left: 0;
-    transform: translateX(-100%);
-  }
+.list ul.mdui-list:before,
+.list ul.mdui-list:after {
+  position: absolute;
+  top: 0px;
+  content: '';
+  height: 100%;
+  width: 1px;
+}
 
-  .list ul.mdui-list:after {
-    right: 0;
-    transform: translateX(100%);
-    border-right: 1px solid rgba(0, 0, 0, .12);
-  }
+.list ul.mdui-list:before {
+  border-left: 1px solid rgba(0, 0, 0, .12);
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.list ul.mdui-list:after {
+  right: 0;
+  transform: translateX(100%);
+  border-right: 1px solid rgba(0, 0, 0, .12);
+}

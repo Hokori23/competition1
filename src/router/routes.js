@@ -24,8 +24,7 @@ const routes = [{
         name: 'Post',
         meta: {
           index: 2,
-          keepAlive: true,
-          scrollTop: 0,
+          keepAlive: false,
         },
         component: () => import('pages/Home/Post.vue'),
       },
@@ -52,7 +51,14 @@ const routes = [{
         meta: {
           index: 999,
         },
-        component: () => import('pages/User/User.vue')
+        component: () => import('pages/User/User.vue'),
+        children:[{
+          path:'profile/:nickName',
+          meta:{
+            index:1000,
+          },
+          component:()=>import('pages/User/Profile.vue')
+        }]
       },
       //Setting
       {
@@ -73,13 +79,13 @@ const routes = [{
           index: 1000
         },
         component: () => import('pages/Settings/Theme.vue')
-      } ,{
+      }, {
         path: 'settings/theme/themecolor',
         meta: {
           index: 1001
         },
         component: () => import('pages/Settings/ThemeColor.vue')
-      },{
+      }, {
         path: 'settings/theme/accentcolor',
         meta: {
           index: 1001
@@ -102,11 +108,20 @@ const routes = [{
       path: 'register',
       meta: {
         index: 1,
-        keepAlive: true,
       },
       component: () => import('pages/Login/Register.vue'),
+    },{
+      path:'forgot',
+      meta:{
+        index:1,
+      },
+      component:()=>import('pages/Login/Forgot.vue')
     }]
   },
+  {
+    path:'/index.html',
+    component:()=>import('pages/fakeIndex.vue')
+  }
 ]
 
 // Always leave this as last one

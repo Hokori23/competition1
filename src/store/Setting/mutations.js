@@ -9,8 +9,18 @@ var changeThemeColor = function(state, value) {
   state.themeColor = value
   localStorage.setItem('themeColor', value)
 
+  window.onload = () => {
+    try {
+      let temp = document.getElementsByClassName('mdui-toolbar')[0] || document.getElementById('login--btn').children[
+        0];
+      if (temp) {
+        document.getElementsByTagName('meta')['theme-color'].content = getComputedStyle(temp).backgroundColor;
+      }
+    } catch (e) {}
+  }
   try {
-    let temp = document.getElementsByClassName('mdui-toolbar')[0] || document.getElementById('login--btn').children[0];
+    let temp = document.getElementsByClassName('mdui-toolbar')[0] || document.getElementById('login--btn').children[
+      0];
     if (temp) {
       document.getElementsByTagName('meta')['theme-color'].content = getComputedStyle(temp).backgroundColor;
     }

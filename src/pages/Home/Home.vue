@@ -3,10 +3,10 @@
     <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
       loosing-text=" " loading-text=" " success-text=" ">
 
-      <div class="post--card mdui-ripple" v-for='item of post'>
+      <div class="post--card mdui-ripple" v-for='(item,index) of post'>
         <!-- 卡片头部，包含头像、标题、副标题 -->
-        <div class="mdui-card-header">
-          <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
+        <div class="mdui-card-header" @click='profile(item.nickName)'>
+          <img class="mdui-card-header-avatar" v-real-img="item.avatarURL" src='../../statics/icons/avatar-fill.png' />
           <div class="mdui-card-header-title">{{item.nickName}}</div>
           <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
           </div>
@@ -26,7 +26,7 @@
             </span>
           </div>
         </div>
-        <div class='mdui-divider'></div>
+        <div class='mdui-divider' v-if="index !== post.length-1"></div>
       </div>
 
     </van-pull-refresh>
@@ -56,13 +56,12 @@
         //跳转到帖子界面
         this.$router.push(`/post/${item.postID}/${item.postTitle}`);
       },
+      profile(name){
+        console.log(name)
+      },
       refresh() {
         this.$store.dispatch('Home/getPost', this)
       },
-      imgErr(e) { //错误图片处理
-        e.target.src = './statics/icons/avatar-fill.png';
-        e.onerror = null;
-      }
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
@@ -70,9 +69,7 @@
         vm.$store.commit('changeTitle', vm.$t('nav.forum'))
 
         //获取帖子数据
-        if (vm.$store.state.User.user !== null && vm.$store.state.User.user.login) {
           vm.$store.dispatch('Home/getPost', vm)
-        }
 
 
 
@@ -115,8 +112,8 @@
 
   .mdui-card-primary-title {
     font-size: 18px;
-    line-height: 40px;
-    max-height: 40px;
+    line-height: 35px;
+    max-height: 35px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -140,7 +137,7 @@
   }
 
   .mdui-card-header {
-    padding: 10px 16px 0 16px;
+    padding: 10px 16px 5px 16px;
     height: auto;
   }
 

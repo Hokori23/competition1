@@ -13,7 +13,7 @@
       <div class="mdui-textfield mdui-textfield-floating-label mdui-textfield-has-bottom" :class="{'mdui-textfield-invalid-html5':error.contentErr}">
         <i class="mdui-icon material-icons">chat</i>
         <label class="mdui-textfield-label">{{$t('newPost.content')}}</label>
-        <textarea class="mdui-textfield-input" maxlength="300" required v-model='post.content'></textarea>
+               <textarea class="mdui-textfield-input" maxlength="300" required v-model='post.content'></textarea>
         <div class="mdui-textfield-error">{{$t('newPost.contentErr')}}</div>
       </div>
 
@@ -93,7 +93,8 @@
     text-align: center;
     opacity: .5;
   }
-  #home--newPost>section>div{
+
+  #home--newPost>section>div {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;

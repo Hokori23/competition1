@@ -35,8 +35,8 @@
           accentColor = localStorage.getItem('accentColor');
         }
 
-          body.classList.add(`mdui-theme-primary-${themeColor}`);
-          body.classList.add(`mdui-theme-accent-${accentColor}`);
+        body.classList.add(`mdui-theme-primary-${themeColor}`);
+        body.classList.add(`mdui-theme-accent-${accentColor}`);
 
         this.$store.commit('Setting/changeThemeColor', themeColor)
         this.$store.commit('Setting/changeAccentColor', accentColor)
@@ -67,6 +67,6 @@
     },
     mounted() {
       this.init()
-    }
+    },
   }
 </script>

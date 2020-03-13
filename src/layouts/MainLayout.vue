@@ -6,11 +6,8 @@
     <section :class="{'loading':this.$store.state.Home.load}" id='page'>
       <transition :name="transitionName" mode="out-in">
         <keep-alive>
-          <router-view v-if="$route.meta.keepAlive"></router-view>
+          <router-view></router-view>
         </keep-alive>
-      </transition>
-      <transition :name="transitionName" mode="out-in">
-        <router-view v-if="!$route.meta.keepAlive"></router-view>
       </transition>
     </section>
 
@@ -52,13 +49,7 @@
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
-        //检查登陆状态
-        if (vm.$store.state.User.user === null || !vm.$store.state.User.user.login) {
-          vm.$router.replace('/login')
-        } else {
-          //进行用户数据初始化
-          vm.$store.dispatch('User/getUser', vm);
-        }
+        vm.$store.dispatch('User/getUser', vm)
       })
     },
     watch: {
@@ -72,12 +63,6 @@
         }
         //关闭loading组件
         this.$store.commit('Home/changeLoad', false)
-
-
-        //检查登陆状态
-        if (this.$store.state.User.user === null || !this.$store.state.User.user.login) {
-          this.$router.replace('/login')
-        }
       }
     }
   }

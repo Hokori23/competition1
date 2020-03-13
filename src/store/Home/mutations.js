@@ -1,5 +1,8 @@
-var changeLoad = function(state,value) {
-  state.load  = value
+var changeLoad = function(state, value) {
+  state.load = value
+}
+var changeOutTime = function(state, value) {
+  state.outTime = value
 }
 var changePost = function(state, newPost) {
   state.post = newPost

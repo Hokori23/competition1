@@ -24,5 +24,5 @@ export {
   searchBar,
   refresh,
   nav,
-  editAvatar
+  editAvatar,
 }

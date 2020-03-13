@@ -1,12 +1,26 @@
 <template>
   <section id='login'>
     <div id='login--container'>
+      <div id='login--lang'>
+        <button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-ripple" mdui-menu="{target: '#login--lang--list'}">
+          <i class="mdui-icon material-icons">&#xe8e2;
+          </i>
+        </button>
+        <ul class="mdui-menu" id="login--lang--list">
+          <li class="mdui-menu-item" @click="changeLang('zh')">
+            <a class="mdui-ripple">中文简体</a>
+          </li>
+          <li class="mdui-menu-item" @click="changeLang('en-us')">
+            <a class="mdui-ripple">English</a>
+          </li>
+        </ul>
+      </div>
       <div class='flex-spacer'></div>
       <div id='login--input'>
         <!-- account -->
         <div class="mdui-textfield mdui-textfield-floating-label mdui-textfield-has-bottom" :class="{'mdui-textfield-invalid-html5':error.accountErr}">
           <i class="mdui-icon material-icons">account_circle</i>
-          <label class="mdui-textfield-label">{{$t('login.account')}}</label>
+          <label class="mdui-textfield-label">{{$t('login.accountOrEmail')}}</label>
           <input class="mdui-textfield-input" type="text" required v-model='user.account' />
           <div class="mdui-textfield-error">{{error.accountErrText}}</div>
         </div>
@@ -26,12 +40,21 @@
       <button class="mdui-btn mdui-btn-dense mdui-color-theme mdui-ripple" @click='register()'>{{$t('login.register')}}</button>
       <button class="mdui-btn mdui-btn-dense mdui-color-theme mdui-ripple" @click='forgot()'>{{$t('login.forgot')}}</button>
     </div>
-
     </div>
+
+
+
+
   </section>
 </template>
 
 <script>
+  //Vant
+  import {
+    Locale
+  } from 'vant';
+  import enUS from 'vant/lib/locale/lang/en-us';
+  import zhCN from 'vant/lib/locale/lang/zh-CN';
   import mdui from 'mdui'
   export default {
     name: 'Login',
@@ -43,10 +66,11 @@
         },
         error: {
           accountErr: false,
-          accountErrText: this.$t('login.accountErr'), //default
+          accountErrText: this.$t('login.accountOrEmailErr'), //default
           passwordErr: false,
           passwordErrText: this.$t('login.passwordErr'), //default
-        }
+        },
+        lang: this.$store.state.Setting.language
       }
     },
     methods: {
@@ -68,14 +92,33 @@
       forgot() {
         this.$router.push('/login/forgot')
       },
+      changeLang(value) {
+        this.lang = value;
+
+
+        this.$store.commit('Setting/changeLanguage', this.lang);
+        this.$i18n.locale = this.lang;
+        if (this.lang === 'zh') {
+          Locale.use('zh-cn', zhCN);
+        } else {
+          Locale.use('en-us', enUS);
+        }
+      }
     },
   }
 </script>
 
 <style scoped>
-  #Login {
+  #login {
     width: 100%;
     height: 100%;
+  }
+
+  #login--lang {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
   }
 
   #login--container {
@@ -86,14 +129,23 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 15%;
+    position: relative;
+    /*    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ */
+
+    padding: 0 65px;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   #login--input {
     flex-grow: 2;
+  }
+
+  #login--input>.mdui-textfield {
+    transform: translateX(-20px);
   }
 
   #login--btn {
@@ -116,16 +168,43 @@
     position: absolute;
     bottom: 0px;
     width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: space-between;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   #login--footer>button {
     margin: 10px 15px;
   }
 
-  .password input{
-    font-size: 25px;
-    letter-spacing: 2px;
+  .password input {
+    letter-spacing: 5px;
+  }
+
+  @media (min-width: 600px) {
+
+    #login--container,
+    #login--footer,
+    #login--input>.mdui-textfield {
+      max-width: 600px;
+    }
+
+    #login--input {
+      width: inherit;
+    }
+
+    #login--register--container,
+    #login--register--container>.mdui-textfield {}
+
+    #login--register--container>.mdui-textfield {
+      padding-top: 0;
+      width: 100%;
+    }
+
+    #login--register--container>.mdui-textfield {
+      padding-top: 16px !important;
+    }
   }
 </style>

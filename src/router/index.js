@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 
 Vue.use(VueRouter)
-
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -35,5 +34,20 @@ export default function( /* { store, ssrContext } */ ) {
     base: process.env.VUE_ROUTER_BASE
   })
 
+  Router.beforeEach((to, from, next) => {
+    if (to.path === '/login' || to.path === '/login/register' || to.path === '/login/forgot') {
+      next();
+    } else {
+      // let token = String(localStorage.getItem('Authorization'));
+      if (!localStorage.getItem('Authorization')) {
+        next({
+          path: '/login',
+          replace: true
+        });
+      } else {
+        next();
+      }
+    }
+  });
   return Router
 }

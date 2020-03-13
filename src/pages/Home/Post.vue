@@ -1,84 +1,87 @@
 <template>
   <section id='home__post' v-if="post" class='page footer comment-footer'>
-       <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
+    <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
       loosing-text=" " loading-text=" " success-text=" ">
-    <div class="post--card post--poster">
-      <!-- 卡片头部，包含头像、标题、副标题 -->
-      <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="post.avatarURL" @error="imgErr($event)" />
-        <div class="mdui-card-header-title">{{post.nickName}}</div>
-        <div class="mdui-card-header-subtitle">{{post.school}} {{post.majority}} {{post.grade}}级
-        </div>
-      </div>
-
-      <!-- 卡片的内容 -->
-      <div class="mdui-card-content post-content text mdui-ripple" @click.stop.self='commentFocus()'>{{post.postContent}}</div>
-      <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
-        <span>{{post.postTime}}
-        </span>
-      </div>
-      <div class='mdui-divider'></div>
-    </div>
-
-
-    <!-- 卡片头部，包含头像、标题、副标题 -->
-    <div class="post--card" v-for='(item,index1) of post.reply'>
-      <!-- <div class='mdui-ripple'> -->
-      <div class="mdui-card-header">
-        <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
-        <div class="mdui-card-header-title">{{item.nickName}}</div>
-        <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
-        </div>
-      </div>
-
-
-      <!-- 卡片的内容 -->
-      <div class="mdui-card-content post-content text mdui-ripple" @click.stop.self='commentFocus(index1)'>{{item.postContent}}</div>
-      <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
-        <span>{{item.replyTime}}
-        </span>
-      </div>
-      <!-- </div> -->
-      <!-- children -->
-      <div class='post--children mdui-ripple' v-for="(child,index2) of item.children" @click.stop='commentFocus(index1,index2)'>
+      <div class="post--card post--poster">
         <!-- 卡片头部，包含头像、标题、副标题 -->
         <div class="mdui-card-header">
-          <img class="mdui-card-header-avatar" :src="child.avatarURL" @error="imgErr($event)" />
-          <div class="mdui-card-header-title">{{child.nickName}}
+          <img class="mdui-card-header-avatar" :src="post.avatarURL" @error="imgErr($event)" />
+          <div class="mdui-card-header-title">{{post.nickName}}</div>
+          <div class="mdui-card-header-subtitle">{{post.school}} {{post.majority}} {{post.grade}}级
           </div>
-
-          <span class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{child.replyTime}}
-          </span>
-          <!--          <div class="mdui-card-header-subtitle">{{child.school}} {{child.majority}} {{child.grade}}级
-          </div> -->
         </div>
 
         <!-- 卡片的内容 -->
-        <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`"><a href='#' v-if="child.target"
-            class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
-            @click.stop.prevent>@{{child.target}} : </a>{{child.postContent}}</div>
-        <!-- 展开评论 -->
-        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
-          v-if="child.postContent.length>120">
-          <span @click.stop.self='commentToggle(`comment-${index1}-${index2}`)' class='mdui-btn mdui-ripple'>{{toggleFold(`comment-${index1}-${index2}`)}}</span>
+        <div class="mdui-card-content post-content text mdui-ripple" @click.stop.self='commentFocus()'>{{post.postContent}}</div>
+        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+          <span>{{post.postTime}}
+          </span>
         </div>
-        <div class='card-bottom--blank' v-else></div>
-
+        <div class='mdui-divider'></div>
       </div>
 
-      <div class='mdui-divider'></div>
-    </div>
-    <div class='post--comment mdui-color-theme-200'>
-      <div class="mdui-textfield">
-        <!-- <a class='mdui-btn mdui-btn-icon'> 发送评论按钮-->
-        <i class="mdui-icon material-icons mdui-btn-icon mdui-ripple">&#xe163;</i>
-        <!-- </a> -->
-        <input id='comment-input' class="mdui-textfield-input mdui-text-color-theme" type="text" :placeholder="$t('post.message')" />
+
+      <!-- 卡片头部，包含头像、标题、副标题 -->
+      <div class="post--card" v-for='(item,index1) of post.reply'>
+        <!-- <div class='mdui-ripple'> -->
+        <div class="mdui-card-header">
+          <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
+          <div class="mdui-card-header-title">{{item.nickName}}</div>
+          <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
+          </div>
+        </div>
+
+
+        <!-- 卡片的内容 -->
+        <div class='mdui-ripple'>
+          <div class="mdui-card-content post-content text" @click.stop.self='commentFocus(index1)'>{{item.postContent}}</div>
+          <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+            <span>{{item.replyTime}}
+            </span>
+          </div>
+        </div>
+        <!-- </div> -->
+        <!-- children -->
+        <div class='post--children mdui-ripple' v-for="(child,index2) of item.children" @click.stop='commentFocus(index1,index2)'>
+          <!-- 卡片头部，包含头像、标题、副标题 -->
+          <div class="mdui-card-header">
+            <img class="mdui-card-header-avatar" :src="child.avatarURL" @error="imgErr($event)" />
+            <div class="mdui-card-header-title">{{child.nickName}}
+            </div>
+
+            <span class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{child.replyTime}}
+            </span>
+            <!--          <div class="mdui-card-header-subtitle">{{child.school}} {{child.majority}} {{child.grade}}级
+          </div> -->
+          </div>
+
+          <!-- 卡片的内容 -->
+          <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`"><a href='#' v-if="child.target"
+              class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+              @click.stop.prevent>@{{child.target}} : </a>{{child.postContent}}</div>
+          <!-- 展开评论 -->
+          <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+            v-if="child.postContent.length>120">
+            <span @click.stop.self='commentToggle(`comment-${index1}-${index2}`)' class='mdui-btn mdui-ripple'>{{toggleFold(`comment-${index1}-${index2}`)}}</span>
+          </div>
+          <div class='card-bottom--blank' v-else></div>
+
+        </div>
+
+        <div class='mdui-divider'></div>
       </div>
-    </div>
+      <div class='post--comment mdui-color-theme-200'>
+        <div class="mdui-textfield">
+          <!-- <a class='mdui-btn mdui-btn-icon'> 发送评论按钮-->
+          <i class="mdui-icon material-icons mdui-btn-icon mdui-ripple">&#xe163;</i>
+          <!-- </a> -->
+          <input id='comment-input' class="mdui-textfield-input mdui-text-color-theme" type="text" :placeholder="$t('post.message')" />
+        </div>
+      </div>
     </van-pull-refresh>
 
-        <van-pagination v-model="currentPage" :total-items="totalReply" :show-page-size="5" force-ellipses class='mdui-text-color-theme' v-if="post" />
+    <van-pagination v-model="currentPage" :total-items="totalReply" :show-page-size="5" force-ellipses class='mdui-text-color-theme'
+      v-if="post" />
   </section>
 </template>
 
@@ -113,7 +116,7 @@
         e.onerror = null;
       },
       commentToggle(target) {
-        this.fold = Math.random();
+        this.fold++;
         document.getElementById(target).classList.toggle('content-unfold')
       },
       commentFocus() {
@@ -128,10 +131,10 @@
     },
     data() {
       return {
-        fold: null,
+        fold: 0,
         load: false,
-        currentPage:1,
-        totalReply:100,
+        currentPage: 1,
+        totalReply: 1,
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -146,17 +149,7 @@
         vm.$store.commit('Display/nav', false)
 
         //获取帖子数据
-        if (vm.$store.state.User.user !== null && vm.$store.state.User.user.login) {
-          vm.$store.dispatch('Home/getSinglePost', vm)
-        }
-
-        //更新本页滚动位置
-        const scrollTop = vm.$route.meta.scrollTop;
-        const $content = document.querySelector('html');
-        if (scrollTop && $content) {
-          $content.scrollTop = scrollTop;
-        }
-
+        vm.$store.dispatch('Home/getSinglePost', vm)
       })
     },
     beforeRouteUpdate(to, from, next) {
@@ -165,13 +158,13 @@
       // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
       // 可以访问组件实例 `this`
     },
-    beforeRouteLeave(to, from, next) {
-      //保存本页滚动位置
-      const $content = document.querySelector('html');
-      const scrollTop = $content ? $content.scrollTop : 0;
-      from.meta.scrollTop = scrollTop;
-      next()
-    },
+    // beforeRouteLeave(to, from, next) {
+    //   //保存本页滚动位置
+    //   const $content = document.querySelector('html');
+    //   const scrollTop = $content ? $content.scrollTop : 0;
+    //   from.meta.scrollTop = scrollTop;
+    //   next()
+    // },
   }
 </script>
 

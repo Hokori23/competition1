@@ -1,6 +1,13 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
+//更改目录时
+// publicPath: 'pwa-token',
+// vueRouterBase: 'pwa-token',
+//
+//PWA:
+//start_url: '/pwa-token/index.html',
+
 module.exports = function(ctx) {
   return {
     // app boot file (/src/boot)
@@ -68,9 +75,16 @@ module.exports = function(ctx) {
       preloadChunks: true,
       // extractCSS: false,
 
+
+
+
       //DIY***************************************************************
-      publicPath: 'pwa',
-      vueRouterBase: 'pwa',
+      publicPath: 'pwa-token',
+      vueRouterBase: 'pwa-token',
+      //DIY***************************************************************
+
+
+
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack(cfg) {},
 
@@ -114,9 +128,13 @@ module.exports = function(ctx) {
         description: 'A Quasar Framework app',
         display: 'standalone',
         orientation: 'portrait',
+
+
+        //DIY***************************************************************
         background_color: '#ffffff',
         theme_color: '#009688',
-        start_url: '/pwa/index.html',
+        start_url: '/pwa-token/index.html',
+        //DIY***************************************************************
         icons: [{
             'src': 'statics/icons/icon-128x128.png',
             'sizes': '128x128',
@@ -156,7 +174,10 @@ module.exports = function(ctx) {
           appleTouchIcon167: 'statics/icons/apple-icon-167x167.png',
           appleSafariPinnedTab: 'statics/icons/safari-pinned-tab.svg',
           msapplicationTileImage: 'statics/icons/ms-icon-144x144.png',
+
+          //DIY***************************************************************
           msapplicationTileColor: '#009688'
+          //DIY***************************************************************
         },
       }
     },
