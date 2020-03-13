@@ -7,7 +7,7 @@
           </i>
         </button>
         <ul class="mdui-menu" id="login--lang--list">
-          <li class="mdui-menu-item" @click="changeLang('zh')">
+          <li class="mdui-menu-item" @click="changeLang('zh-cn')">
             <a class="mdui-ripple">中文简体</a>
           </li>
           <li class="mdui-menu-item" @click="changeLang('en-us')">

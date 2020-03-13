@@ -18,8 +18,8 @@
     "quasar": "^1.0.0",
     "vant": "^2.5.4",
     "vue-cropper": "^0.5.0",
-    "vue-html5-editor": "^1.1.1",
-    "vue-i18n": "^8.0.0"
+    "vue-i18n": "^8.0.0",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",

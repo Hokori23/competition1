@@ -1,6 +1,6 @@
 import enUS from './en-us'
-import zh from './zh'
+import zhCN from './zh-cn'
 export default {
   'en-us': enUS,
-  'zh':zh
+  'zh-cn':zhCN
 }

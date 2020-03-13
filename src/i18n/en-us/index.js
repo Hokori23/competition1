@@ -45,8 +45,11 @@ export default {
     title: 'Title',
     titleErr: 'Title is required',
     content: 'Content',
+    contentTip:'Insert text here ...',
     contentErr: 'Request content is required',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
+    leaveConfirm:'是否将未发表的内容保存为草稿',
+    missingConfirm:'退出程序后草稿消失',
   },
   drawer: {
     user: 'Account',
@@ -99,6 +102,7 @@ export default {
     confirm: 'Confirm',
     cancel: 'Cancel',
     reconnect: 'Reconnect',
-    unknownErr: 'Unknown Error!'
+    unknownErr: 'Unknown Error!',
+    save:'Save',
   }
 }

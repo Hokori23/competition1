@@ -13,7 +13,7 @@
         //初始化语言设置-----------------------
         let language = localStorage.getItem('language');
         if (language == null || language.length === 0) { //第一次初始化
-          localStorage.setItem('language', 'zh');
+          localStorage.setItem('language', 'zh-cn');
           language = localStorage.getItem('language');
         }
         this.$store.commit('Setting/changeLanguage', language)

@@ -1,10 +1,10 @@
 <template>
   <section id='settings--language' class='list page'>
     <ul class="mdui-list">
-      <li class="mdui-list-item mdui-ripple" @click.self="changeLang('zh')">
+      <li class="mdui-list-item mdui-ripple" @click.self="changeLang('zh-cn')">
         <div class="mdui-list-item-content">简体中文</div>
         <label class="mdui-radio">
-          <input type="radio" v-model='lang' value='zh' />
+          <input type="radio" v-model='lang' value='zh-cn' />
           <i class="mdui-radio-icon"></i>
         </label>
       </li>

@@ -45,8 +45,11 @@ export default {
     title: '标题',
     titleErr: '标题不能为空',
     content: '内容',
+    contentTip:'在此输入内容...',
     contentErr: '内容不能为空',
-    confirm: '确定'
+    confirm: '确定',
+    leaveConfirm:'是否将未发表的内容保存为草稿',
+    missingConfirm:'退出程序后草稿消失',
   },
   drawer: {
     user: '用户中心',
@@ -96,6 +99,7 @@ export default {
     confirm: '确定',
     cancel: '取消',
     reconnect: '重新连接',
-    unknownErr: '未知错误！'
+    unknownErr: '未知错误！',
+    save:'保存',
   }
 }

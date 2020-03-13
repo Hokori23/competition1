@@ -182,6 +182,10 @@
       height: calc(100% - 64px);
     }
 
+    #login--register--container {
+      padding: 0 65px;
+    }
+
     #login--register--container,
     #login--register--container>.mdui-textfield {
       max-width: 600px;
@@ -204,7 +208,6 @@
     align-items: center;
     box-sizing: border-box;
     width: 100%;
-    padding: 0 65px;
     margin: 0 auto;
     /*    position: absolute;
     top: 50%;
