@@ -52,13 +52,12 @@ const routes = [{
           index: 999,
         },
         component: () => import('pages/User/User.vue'),
-        children:[{
-          path:'profile/:nickName',
-          meta:{
-            index:1000,
-          },
-          component:()=>import('pages/User/Profile.vue')
-        }]
+      }, {
+        path: 'profile/:nickName',
+        meta: {
+          index: 1000,
+        },
+        component: () => import('pages/User/Profile.vue')
       },
       //Setting
       {
@@ -110,17 +109,17 @@ const routes = [{
         index: 1,
       },
       component: () => import('pages/Login/Register.vue'),
-    },{
-      path:'forgot',
-      meta:{
-        index:1,
+    }, {
+      path: 'forgot',
+      meta: {
+        index: 1,
       },
-      component:()=>import('pages/Login/Forgot.vue')
+      component: () => import('pages/Login/Forgot.vue')
     }]
   },
   {
-    path:'/index.html',
-    component:()=>import('pages/fakeIndex.vue')
+    path: '/index.html',
+    component: () => import('pages/fakeIndex.vue')
   }
 ]
 

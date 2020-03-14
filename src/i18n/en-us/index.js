@@ -16,16 +16,12 @@ export default {
     forgot: 'Forgot?',
     phoneNumber: 'Phone Number',
     phoneNumberErr: 'Phone number required',
-    phoneNumberWrong:'Phone number wrong',
+    phoneNumberWrong: 'Phone number wrong',
     plzFill: 'Please fill up the information',
     checkCode: 'Verification Code',
     checkCodeErr: 'Verification code required',
-    resend:'Retry',
-    send:'Send'
-  },
-  user: {
-    timeOutErr: "Failed to request user's info",
-    try: 'Try Again'
+    resend: 'Retry',
+    send: 'Send'
   },
   nav: {
     forum: 'Home',
@@ -45,11 +41,11 @@ export default {
     title: 'Title',
     titleErr: 'Title is required',
     content: 'Content',
-    contentTip:'Insert text here ...',
+    contentTip: 'Insert text here ...',
     contentErr: 'Request content is required',
     confirm: 'Confirm',
-    leaveConfirm:'是否将未发表的内容保存为草稿',
-    missingConfirm:'退出程序后草稿消失',
+    leaveConfirm: '是否将未发表的内容保存为草稿',
+    missingConfirm: '退出程序后草稿消失',
   },
   drawer: {
     user: 'Account',
@@ -59,13 +55,36 @@ export default {
     about: 'About'
   },
   user: {
+    timeOutErr: "Failed to request user's info",
+    try: 'Try Again',
     profile: 'Profile',
     profilePhoto: 'Profile Photo',
-    editName: 'Edit Name',
-    name: 'Name',
+    editName: 'Edit Nickname',
+    name: 'Nickname',
+    editNameErr: "Nickname's length should be between 5 and 10.",
+    school: 'School',
+    majority: 'Majority',
+    grade: 'Grade',
+    sex: 'Sex',
+    male: 'Male',
+    female: 'Female',
+    verification: 'Verification',
+    verified: 'Verified',
+    unverified: 'Unverified',
+    send: 'Send Code',
+    resend: 'Retry',
     logout: 'Log Out',
     logoutText: 'Confirm exit?',
-    timeOutErr: 'Get userInfo timeout'
+    timeOutErr: 'Get userInfo timeout',
+    editPhoneNumber: 'Edit Phone Number',
+    editPhoneNumberErr: 'Phone number format wrong',
+    verify: 'Please verify identity via EDU',
+    modifySuccess: 'Modified Successfully',
+    modifyFail: 'Modification failed',
+    go: 'Go',
+  },
+  profile: {
+    profile: 'Profile'
   },
   settings: {
     language: 'Language',
@@ -103,6 +122,6 @@ export default {
     cancel: 'Cancel',
     reconnect: 'Reconnect',
     unknownErr: 'Unknown Error!',
-    save:'Save',
+    save: 'Save',
   }
 }

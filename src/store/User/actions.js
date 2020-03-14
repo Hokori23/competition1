@@ -60,8 +60,8 @@ var register = function({
       data: {
         account: event.user.account,
         password: event.user.password,
-        phoneNumber:event.user.phoneNumber,
-        checkCode:event.user.checkCode,
+        phoneNumber: event.user.phoneNumber,
+        checkCode: event.user.checkCode,
       },
       timeout: 5000,
     }).then(function(res) {
@@ -89,39 +89,43 @@ var register = function({
 }
 
 //获取用户信息
-var getUser = function({
+function getUser({
   commit,
   state
 }, event) {
   //开启提交状态
+  console.log('async user')
   commit('changeLoad', true);
-  event.$axios({
-    methods: 'get',
-    url: '/public/user.json',
-    data: {
-      account: event.account,
-    },
-    timeout: 5000,
-  }).then(function(res) {
-    if (localStorage.getItem('Authorization')) {
-      event.$store.commit('User/changeUser', res.data.data.user)
-    }
-  }).catch(function(err) {
-    mdui.snackbar({
-      message: event.$t('user.timeOutErr'),
-      buttonText: event.$t('common.reconnect'),
-      timeout: 0,
-      onButtonClick: function() {
-        this.close;
-        event.$store.dispatch('User/getUser', event);
+  return new Promise((resolve, reject) => {
+    event.$axios({
+      methods: 'get',
+      url: '/public/user.json',
+      data: {
+        account: event.account,
       },
-      closeOnOutsideClick: false,
+      timeout: 5000,
+    }).then(function(res) {
+      event.$store.commit('User/changeUser', res.data.data);
+      resolve(res.data.data);
+    }).catch(function(err) {
+      mdui.snackbar({
+        message: event.$t('user.timeOutErr'),
+        buttonText: event.$t('common.reconnect'),
+        timeout: 0,
+        onButtonClick: function() {
+          this.close;
+          event.$store.dispatch('User/getUser', event);
+        },
+        closeOnOutsideClick: false,
+      })
+      reject(err)
+    }).finally(() => {
+      //关闭提交状态
+      event.$store.commit('User/changeLoad', false)
     })
-  }).finally(() => {
-    //关闭提交状态
-    event.$store.commit('User/changeLoad', false)
   })
 }
+
 
 
 //更改用户信息//now**************************************************

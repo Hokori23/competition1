@@ -161,8 +161,8 @@
       })
     },
     beforeRouteLeave(to, from, next) {
+      let vm = this;
       if (this.post.content || this.post.title) {
-        let vm = this;
         mdui.confirm(this.$t('newPost.missingConfirm'), this.$t('newPost.leaveConfirm'), () => {
           console.log('保存')
           next()
@@ -176,8 +176,10 @@
           history: false
         })
       } else {
+        vm.$destroy();
         next()
       }
+
     },
     watch: {
       post: {
@@ -226,6 +228,10 @@
     max-width: 80%;
     text-align: center;
     opacity: .5;
+  }
+
+  header .mdui-icon {
+    margin-right: 5px;
   }
 
   #home--newPost>section>div {

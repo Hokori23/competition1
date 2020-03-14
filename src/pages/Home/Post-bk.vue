@@ -2,71 +2,72 @@
   <section id='home__post' v-if="post" class='page footer comment-footer'>
     <van-pull-refresh v-model="load" :head-height="0" @refresh="refresh" success-duration=0 pulling-text=" "
       loosing-text=" " loading-text=" " success-text=" ">
-      <div class="post--card post--poster mdui-ripple" @click.stop='commentFocus()'>
+      <div class="post--card post--poster">
         <!-- 卡片头部，包含头像、标题、副标题 -->
-        <div class="mdui-card-header" @click.stop='profile(post.nickName)'>
+        <div class="mdui-card-header">
           <img class="mdui-card-header-avatar" :src="post.avatarURL" @error="imgErr($event)" />
-          <div class="mdui-card-header-title">
-            {{post.nickName}}
-            <span class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
-              {{post.postTime}}
-            </span>
-          </div>
+          <div class="mdui-card-header-title">{{post.nickName}}</div>
           <div class="mdui-card-header-subtitle">{{post.school}} {{post.majority}} {{post.grade}}级
           </div>
         </div>
 
         <!-- 卡片的内容 -->
-        <div class="mdui-card-content post-content text">{{post.postContent}}</div>
+        <div class="mdui-card-content post-content text mdui-ripple" @click.stop.self='commentFocus()'>{{post.postContent}}</div>
+        <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+          <span>{{post.postTime}}
+          </span>
+        </div>
         <div class='mdui-divider'></div>
       </div>
 
 
       <!-- 卡片头部，包含头像、标题、副标题 -->
-      <div class="post--card mdui-ripple" v-for='(item,index1) of post.reply' @click.stop='commentFocus(index1)'>
-        <div class="mdui-card-header" @click.stop='profile(item.nickName)'>
+      <div class="post--card" v-for='(item,index1) of post.reply'>
+        <!-- <div class='mdui-ripple'> -->
+        <div class="mdui-card-header">
           <img class="mdui-card-header-avatar" :src="item.avatarURL" @error="imgErr($event)" />
-          <div class="mdui-card-header-title">
-            {{item.nickName}}
-            <span class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{item.replyTime}}
-            </span>
-          </div>
+          <div class="mdui-card-header-title">{{item.nickName}}</div>
           <div class="mdui-card-header-subtitle">{{item.school}} {{item.majority}} {{item.grade}}级
           </div>
         </div>
 
 
         <!-- 卡片的内容 -->
-        <div class="mdui-card-content post-content text">{{item.postContent}}</div>
-
-
-
-
-
-        <!-- children -->
-        <div class='post--children' v-if='commentLength(item.children)'>
-          <div class='mdui-ripple' v-for="(child,index2) of item.children" @click.stop='commentFocus(index1,index2)'
-            v-if='index2<3'>
-            <!-- 卡片的内容 -->
-            <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`">
-              <a href='#' class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
-                @click.stop.prevent='profile(child.nickName)'>
-                {{child.nickName}}
-              </a>
-              <a href='#' v-if="child.target" class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
-                @click.stop.prevent='profile(child.target)'>
-                @{{child.target}}
-              </a> :
-              {{child.postContent}}
-            </div>
-          </div>
-          <div class='mdui-card-content post-content text mdui-ripple' v-if='commentLength(item.children)>3'>
-            <a href='#' class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
-              @click.stop.prevent='more()'>
-              共{{item.children.length}}条回复
-            </a>
+        <div class='mdui-ripple'>
+          <div class="mdui-card-content post-content text" @click.stop.self='commentFocus(index1)'>{{item.postContent}}</div>
+          <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">
+            <span>{{item.replyTime}}
+            </span>
           </div>
         </div>
+        <!-- </div> -->
+        <!-- children -->
+        <div class='post--children mdui-ripple' v-for="(child,index2) of item.children" @click.stop='commentFocus(index1,index2)'>
+          <!-- 卡片头部，包含头像、标题、副标题 -->
+          <div class="mdui-card-header">
+            <img class="mdui-card-header-avatar" :src="child.avatarURL" @error="imgErr($event)" />
+            <div class="mdui-card-header-title">{{child.nickName}}
+            </div>
+
+            <span class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}">{{child.replyTime}}
+            </span>
+            <!--          <div class="mdui-card-header-subtitle">{{child.school}} {{child.majority}} {{child.grade}}级
+          </div> -->
+          </div>
+
+          <!-- 卡片的内容 -->
+          <div class="mdui-card-content post-content text" :id="`comment-${index1}-${index2}`"><a href='#' v-if="child.target"
+              class='mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+              @click.stop.prevent>@{{child.target}} : </a>{{child.postContent}}</div>
+          <!-- 展开评论 -->
+          <div class='mdui-card-content card-bottom mdui-text-color-theme' :class="{'mdui-text-color-theme-accent':$store.state.Setting.darkMode}"
+            v-if="child.postContent.length>120">
+            <span @click.stop.self='commentToggle(`comment-${index1}-${index2}`)' class='mdui-btn mdui-ripple'>{{toggleFold(`comment-${index1}-${index2}`)}}</span>
+          </div>
+          <div class='card-bottom--blank' v-else></div>
+
+        </div>
+
         <div class='mdui-divider'></div>
       </div>
       <div class='post--comment mdui-color-theme-200'>
@@ -91,15 +92,22 @@
       post() {
         return this.$store.state.Home.singlePost || false
       },
+      toggleFold() {
+        return (target) => {
+          if (this.fold) {}
+          const TARGET = document.getElementById(target);
+          if (TARGET) {
+            if (TARGET.classList.contains('content-unfold')) {
+              return '收起'
+            } else {
+              return '展开'
+            }
+          }
+          return '展开'
+        }
+      },
       input() {
         return document.getElementById('comment-input');
-      },
-      commentLength() {
-        return function(e) {
-          if (e) {
-            return e.length
-          }
-        }
       }
     },
     methods: {
@@ -107,24 +115,18 @@
         e.target.src = './statics/icons/avatar-fill.png';
         e.onerror = null;
       },
+      commentToggle(target) {
+        this.fold++;
+        document.getElementById(target).classList.toggle('content-unfold')
+      },
       commentFocus() {
         if (arguments.length === 1) {
           /*************NOW************/
-        }
-        console.log('comment')
-        for (let i of arguments) {
-          console.log(i)
         }
         this.input.focus();
       },
       refresh() {
         this.$store.dispatch('Home/getSinglePost', this)
-      },
-      profile(e) {
-        this.$router.push(`/profile/${e}`);
-      },
-      more() {
-        console.log('more')
       }
     },
     data() {
@@ -172,18 +174,9 @@
     color: #fff;
   }
 
-  .mdui-card-header-title {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .mdui-card-header-title>span {
-    font-size: 11px;
-    font-weight: normal;
-  }
-
   .mdui-card-content {
     padding: 0px 17px;
+    margin-bottom: 5px;
     line-height: 24px;
   }
 
@@ -194,13 +187,11 @@
 
   .post--card {
     max-width: 500px;
+    /* margin: 0 auto 15px auto; */
     margin: 0 auto;
     position: relative;
   }
 
-  .mdui-divider {
-    margin-top: 16px;
-  }
 
   .card-bottom {
     margin: 5px 0;
@@ -209,23 +200,64 @@
     font-size: 11px;
   }
 
-  .mdui-theme-layout-dark .post--children {
-    background-color: rgba(255, 255, 255, .07);
-  }
-
+  /*  .mdui-card-content{
+    padding:0px calc(1em + 17px)
+  } */
   .post--children {
     box-sizing: border-box;
-    margin: 3px 15px 3px 51px;
-    padding: 8px 13px;
-    background-color: rgba(0, 0, 0, .07);
+    padding: 3px 0 0 2rem;
   }
 
-  .post--children .mdui-card-content {
-    padding: 0 10px 0 0;
+  .post--children>.mdui-card-header {
+    padding: 3px 16px;
+    height: 36px;
+  }
+
+  .post--children>.mdui-card-header>.mdui-card-header-title {
+    line-height: 30px;
+    /* margin-left: 35px; */
+
+    margin-left: 5px;
+    display: inline-block;
+  }
+
+  .post--children>.mdui-card-header>span {
+    opacity: 1;
+    float: right;
+    font-size: 11px;
+    line-height: 30px;
+  }
+
+  .post--children>.mdui-card-header>.mdui-card-header-avatar {
+    width: 30px;
+    height: 30px;
   }
 
   .post-content {
     cursor: text !important;
+  }
+
+  .post--children .post-content {
+    margin: 5px 0;
+    line-height: 24px;
+    overflow: hidden;
+    /*    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    box-sizing: border-box; */
+    transition: max-height ease .2s;
+    max-height: 48px;
+  }
+
+  .content-unfold {
+    max-height: 168px !important;
+  }
+
+  .post--children .mdui-btn {
+    min-width: auto;
+    height: auto;
+    line-height: auto;
   }
 
   .comment-footer.footer {
@@ -265,6 +297,10 @@
 
   .post--comment .mdui-textfield-input {
     margin-right: 56px;
+  }
+
+  .card-bottom--blank {
+    padding: 5px 0;
   }
 
   a {

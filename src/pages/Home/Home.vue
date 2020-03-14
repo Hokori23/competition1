@@ -56,8 +56,8 @@
         //跳转到帖子界面
         this.$router.push(`/post/${item.postID}/${item.postTitle}`);
       },
-      profile(name){
-        console.log(name)
+      profile(e){
+        this.$router.push(`/profile/${e}`);
       },
       refresh() {
         this.$store.dispatch('Home/getPost', this)

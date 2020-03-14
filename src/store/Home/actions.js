@@ -47,8 +47,9 @@ var newPost = function({
       methods: 'get',
       url: '/public/post.json',
       data: {
-        title: event.title,
-        content: event.content
+        account:event.$store.state.User.account,
+        postTitle: event.title,
+        postContent: event.content
       },
       timeout: 5000,
     }).then(function(res) {
@@ -78,7 +79,7 @@ var getSinglePost = function({
       methods: 'get',
       url: '/public/singlePost.json',
       data: {
-        id: event.$route.params.postID,
+        postID: event.$route.params.postID,
         page: event.currentPage
       },
       timeout: 5000,

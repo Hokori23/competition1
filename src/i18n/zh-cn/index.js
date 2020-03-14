@@ -3,11 +3,11 @@
 
 export default {
   login: {
-    account: '用户名',
-    accountOrEmail: '用户名或邮箱',
-    accountErr: '用户名不能为空',
-    accountOrEmailErr: '不能为空，填写用户名或邮箱',
-    accountWrong: '用户名或邮箱不存在',
+    account: '账号',
+    accountOrEmail: '账号或邮箱',
+    accountErr: '账号不能为空',
+    accountOrEmailErr: '不能为空，填写账号或邮箱',
+    accountWrong: '账号或邮箱不存在',
     password: '密码',
     passwordErr: '密码不能为空',
     passwordWrong: '密码错误',
@@ -16,16 +16,12 @@ export default {
     forgot: '无法登录?',
     phoneNumber: '手机号',
     phoneNumberErr: '手机号不能为空',
-    phoneNumberWrong:'手机号格式错误',
+    phoneNumberWrong: '手机号格式错误',
     plzFill: '请填写注册信息',
     checkCode: '验证码',
     checkCodeErr: '验证码不能为空',
-    resend:'重发',
-    send:'发送'
-  },
-  user: {
-    timeOutErr: '获取用户信息失败',
-    try: '重试'
+    resend: '重发',
+    send: '发送'
   },
   nav: {
     forum: '首页',
@@ -45,11 +41,11 @@ export default {
     title: '标题',
     titleErr: '标题不能为空',
     content: '内容',
-    contentTip:'在此输入内容...',
+    contentTip: '在此输入内容...',
     contentErr: '内容不能为空',
     confirm: '确定',
-    leaveConfirm:'是否将未发表的内容保存为草稿',
-    missingConfirm:'退出程序后草稿消失',
+    leaveConfirm: '是否将未发表的内容保存为草稿',
+    missingConfirm: '退出程序后草稿消失',
   },
   drawer: {
     user: '用户中心',
@@ -59,13 +55,36 @@ export default {
     about: '关于'
   },
   user: {
+    timeOutErr: '获取用户信息失败',
+    try: '重试',
     profile: '个人信息',
     profilePhoto: '头像',
     name: '昵称',
     editName: '更改昵称',
+    editNameErr:'用户名长度需在5个字符到10个字符之间',
+    school: '学院',
+    majority: '专业',
+    grade:'年级',
+    sex:'性别',
+    male:'男',
+    female:'女',
+    send:'发送验证码',
+    verification:'验证状态',
+    verified:'已验证',
+    unverified:'未验证',
+    resend:'重新发送验证码',
     logout: '退出登录',
     logoutText: '确定登出吗？',
-    timeOutErr: '获取用户信息超时'
+    timeOutErr: '获取用户信息超时',
+    editPhoneNumber: '更改手机号',
+    editPhoneNumberErr:'手机号格式错误',
+    verify:'请通过教育网实名验证',
+    modifySuccess:'修改成功',
+    modifyFail:'修改失败',
+    go:'前往',
+  },
+  profile:{
+    profile:'个人资料'
   },
   settings: {
     language: '多语言设置',
@@ -100,6 +119,6 @@ export default {
     cancel: '取消',
     reconnect: '重新连接',
     unknownErr: '未知错误！',
-    save:'保存',
+    save: '保存',
   }
 }
